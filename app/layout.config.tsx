@@ -1,4 +1,5 @@
-import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
+import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import { Droplet } from "lucide-react";
 
 /**
  * Shared layout configurations
@@ -9,13 +10,44 @@ import type { BaseLayoutProps } from 'fumadocs-ui/layouts/shared';
  */
 export const baseOptions: BaseLayoutProps = {
   nav: {
-    title: 'My App',
+    title: "Metis Docs",
+    url: "/docs",
+    enableSearch: true,
   },
+  githubUrl: "https://github.com/MetisProtocol/docs",
   links: [
     {
-      text: 'Documentation',
-      url: '/docs',
-      active: 'nested-url',
+      type: "menu",
+      text: "Explorers",
+      items: [
+        {
+          text: "Andromeda",
+          url: "https://explorer.metis.io",
+        },
+        {
+          text: "Sepolia",
+          url: "https://sepolia-explorer.metisdevops.link",
+        },
+      ],
+    },
+    {
+      type: "menu",
+      text: "Help Centers",
+      items: [
+        {
+          text: "Discord",
+          url: "https://discord.gg/metis",
+        },
+        {
+          text: "Telegram",
+          url: "https://t.me/metis_dev",
+        },
+      ],
+    },
+    {
+      icon: <Droplet />,
+      text: "Faucet",
+      url: "https://faucet.metis.io/",
     },
   ],
 };

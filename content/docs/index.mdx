@@ -1,13 +1,35 @@
 ---
-title: Hello World
-description: Your first document
+title: Metis L2
+description: Metis is a Layer 2 solution that boosts Ethereum by speeding up transactions, lowering gas fees, and keeping it secure and decentralized.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+Metis is a next-generation **Layer 2 Ethereum solution**, designed to empower decentralized applications and businesses with **scalability, low-cost transactions**, and a user-centric ecosystem. By leveraging advanced technologies like **Optimistic Rollups** and **Decentralized Sequencers**, Metis aims to overcome the limitations of traditional blockchain networks while maintaining the core ethos of decentralization and security.
 
-## What is Next?
+## Key Features of Metis
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+- **Scalability**: Supports high transaction throughput while maintaining low latency and cost.
+- **Ethereum Compatibility**: Fully compatible with Ethereum’s EVM, making it easy for developers to deploy dApps.
+- **Decentralized Sequencing**: Eliminates single points of failure by decentralizing the process of transaction ordering and block production.
+- **Community-Driven Governance**: Encourages collaboration and community-led decision-making.
+- **Cross-Chain Interoperability**: Facilitates seamless asset and data transfer between Ethereum Layer 1 and Metis Layer 2.
+
+## Structure
+
+The entire structure of Metis Layer 2 is designed around several algorithm loops which are designated to mitigate the potential damage and filter the possible malfunctions of decentralized actors and/or other outer ill-wishers.
+
+There are 7 distinguished actors participating in the system (Governance Protocol is a part of L1 / Smart contract, but it handles a number of functions that make it a separate entity):
+
+1. **User** sends the transactions;
+2. **Sequencer Node** (it’s a part of a decentralized network with rotations, etc.) is responsible for correcting the blockchain, propagating the blocks through the Peer Network;
+3. **Metis Blockchain** is an entity held by Decentralized Sequencer;
+4. **Verifier** (decentralized entity) is the counterpart of Sequencer, mostly responsible for keeping an eye on the Sequencer to not provide false/invalid data;
+5. **L1 Smart Contracts** — the set of smart contracts that handle the security of the system, solve the disputes between Sequencer and Verifier;
+6. **Memolabs** (decentralized entity) stores the transaction data;
+7. **The Governance Protocol** is responsible for anything related to the efficiency of the system.
+
+## Transaction Processing Algorithm
+
+1. **What is the "Insecure transaction state of the system"?** It is a special state when the system stops in some sense because the security of transactions after the problematic batch cannot be guaranteed. The system enters an insecure transaction state for the data availability request time window until the next rotation. During this time window, if the Sequencer provides valid data, the system will exit the insecure transaction state. For now, the duration of the data availability request time window is 24 hours.
+2. **What if the Sequencers unite to stop the system?** The system will only halt if more than 1/3 of Sequencers stop producing blocks for the Metis blockchain. In the event of a single node failure, it will rotate to the next Sequencer after a 1-minute timeout period. The community has proposed governance measures to penalize problematic or malicious Sequencers. For more details, see \[this page].
+3. **What if the Sequencer forged both transaction data and the batch?** A Sequencer that alters transactions will not be able to pass verification by other Sequencers.
+4. **What if the Sequencer sends forged data to Memolabs and L1 / Smart Contract?** The Sequencer is not authorized to perform this action.

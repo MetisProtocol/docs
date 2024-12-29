@@ -1,0 +1,59 @@
+---
+title: FAQ
+---
+
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+
+<Accordions>
+    <Accordion title="What is a Decentralized Network?">
+        In a decentralized network, control is distributed across multiple participants rather than being concentrated in a central authority. This ensures:
+
+        - **Resilience**: Prevents single points of failure.
+        - **Security**: Guards against malicious attacks by spreading control across the network.
+        - **Transparency**: Enables open and verifiable operations.
+        - **Censorship Resistance**: Protects against undue influence or restrictions by centralized entities.
+
+        Metis is pioneering decentralized infrastructure by integrating advanced governance and **Decentralized Sequencers**, enabling a robust and equitable environment for blockchain applications.
+    </Accordion>
+
+    <Accordion title="What is Metis L2?">
+        Metis is an Ethereum Layer 2 leveraging innovative technologies such as Decentralized Sequencers and off-chain storage for empowering a sustainable Web3 economy.
+    </Accordion>
+
+    <Accordion title="How does Metis Maintain a Consistent Uptime?">
+        The system is designed in a way that any malfunctioning actor gets charged and swapped out through the constant cycles of rotation. It is accomplished with the Peer Network which includes Sequencers, Verifiers, and Consensus (PoS) layer. After the next major upgrade, there will be no more downtime at all, and the maintenance schedule will be controlled by the community through the governance protocol.
+    </Accordion>
+
+    <Accordion title="What is the Peer Network?">
+        It is a network of decentralized actors (nodes) that serve the Metis system. Anyone can become a part of the Peer Network just by setting up a node on their computer. The participants of the Peer Network receive revenue with a portion of the fees from all the transactions that go through the Peer Network.
+    </Accordion>
+
+    <Accordion title="How does Metis Achieve Cheaper Transactions?">
+        Metis utilizes the Merkle Tree State and Batch Roots (MTSR/MTTBR). In an oversimplified analogy, you can think about MTSR or MTTBR as a bank cheque that you can withdraw the money from. Let’s say you want to give someone a big sum of money: in a more efficient way you would give a bank cheque instead of a bag of cash. Metis does the same: instead of posting huge chunks of transaction data to Layer 1, Metis utilizes MTSR/MTTBR to make it way more efficient while still utilizing the security of Ethereum.
+    </Accordion>
+
+    <Accordion title="What is Merkle Tree State Root / Merkle Tree Transaction Batch Root (MTSR/MTTBR)?">
+        It is a hashing algorithm which is aimed to identify the inconsistencies between the nodes (or participants of the Peer Network in our case). Merkle tree is created by dividing data into many pieces, which are then hashed repeatedly to form the Merkle Tree Root. You can efficiently verify if something has gone wrong with a piece of data.
+    </Accordion>
+
+    <Accordion title="Does Metis still provide Ethereum Layer 1 security by using the Merkle Tree algorithm?">
+       Yes, you can practically check whether your transaction is included into a MTSR/MTTBR data batch (that’s also how Metis solves the data availability problem), and it cannot be maliciously altered without your private keys. Ethereum Layer 1 processes the transaction data, Metis instead utilizes Ethereum Layer 1 to process MTSR/MTTBR batches which were derived from the transaction data.
+    </Accordion>
+
+    <Accordion title="What will happen with my money if I send a transaction and the blockchain gets stopped?">
+        Your money will either successfully reach the desired destination address, or you will have to resend the transaction. No money will be lost.
+    </Accordion>
+
+    <Accordion title="Where does Metis store the transaction data?">
+        Metis stores the transaction data in Memolabs storage, which is based on blockchain technology to provide safe, efficient, and large-scale decentralized cloud storage services.
+    </Accordion>
+
+    <Accordion title="If Memolabs goes down, will the system still operate?">
+        Yes, in this case the Verifier downloads the transaction data from Memolabs. If Memolabs is unavailable, then Verifier requests the Sequencer to post the transaction data on L1 and then downloads it from there. You can check these cases in diagrams or algorithm section below for more details.
+    </Accordion>
+
+    <Accordion title="What is a wrapped Metis token?">
+        Metis is a native token but also an ERC20 compatible token on Layer 2. It is a built-in feature, so there is no need to create a wrapped Metis token, and the source code is [here](https://github.com/MetisProtocol/mvm/blob/develop/packages/contracts/contracts/MVM/MVM_Coinbase.sol). Sushiswap team deployed a wMetis, it's the same with WETH9, the contract address is [0x75cb093E4D61d2A2e65D8e0BBb01DE8d89b53481](https://andromeda-explorer.metis.io/address/0x75cb093E4D61d2A2e65D8e0BBb01DE8d89b53481/contracts)
+    </Accordion>
+
+</Accordions>

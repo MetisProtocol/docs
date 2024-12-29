@@ -1,0 +1,63 @@
+---
+title: FAQs
+---
+
+import { Accordion, Accordions } from "fumadocs-ui/components/accordion";
+
+<Accordions>
+    <Accordion title="What are Decentralized Sequencers?">
+        Decentralized Sequencers are key entities within the Metis Layer 2 ecosystem, responsible for:
+
+        - Sequencing transactions and assembling blocks on the Metis Layer 2 chain.
+        - Submitting batched transactions to Ethereum Layer 1 for security and finality.
+        - Ensuring seamless rotation and fault tolerance through decentralized governance.
+
+        Unlike centralized systems, Metis leverages a pool of decentralized sequencers to distribute responsibilities and eliminate single points of failure. This model enhances the resilience of the network while fostering community-driven participation.
+    </Accordion>
+
+    <Accordion title="Why Decentralized Sequencers?">
+        The transition to decentralized sequencers is a critical milestone for Metis. The primary objectives include:
+
+        1. **Resilience and Security**: Elimination of single points of failure by distributing the sequencing process across multiple nodes.
+        2. **Fair Participation**: Introducing a weighted voting mechanism based on staked METIS tokens, ensuring fairness in sequencer selection.
+        3. **Governance and Accountability**: Establishing governance mechanisms to penalize malicious behavior and reward contributors.
+        4. **Efficiency and Scalability**: Ensuring efficient transaction processing and block production across the Layer 2 network.
+    </Accordion>
+
+    <Accordion title="Key Features of Decentralized Sequencers">
+        1. **Sequencer Rotation**
+           - Ensures fair distribution of block production roles.
+           - Utilizes a rotation mechanism managed by the Proof-of-Stake (PoS) consensus layer and smart contracts.
+        2. **Fault Tolerance**
+           - Automatic reselection of sequencers in case of failure or malicious activity.
+           - Guarantees network stability by replacing inactive or misbehaving sequencers.
+        3. **Community Governance**
+           - Decentralized governance ensures community participation in decision-making.
+           - Slashing mechanisms to penalize malicious behavior and reward honest participants.
+        4. **Transparency**
+
+           - Publicly auditable sequencer operations and rotation records.
+           - All sequencer-related actions are stored on-chain, ensuring transparency.
+    </Accordion>
+
+    <Accordion title="What are the Risks Associated with Sequencer Mining?">
+        In case of bad performance or malicious acting, the particular sequencer pool participant’s locked tokens would be slashed.
+    </Accordion>
+
+    <Accordion title="In what cases is a Particular Sequencer Considered Malicious?">
+        Cases would include but not limited to:
+
+        1. Transaction manipulation (MEV or sandwiching)
+        2. Malicious Execution Result Modification: If a node modifies the execution result of a block, it will fail validation by other sequencers. This will cause other sequencers to stop producing blocks. The node will then be forced to produce a new block with the correct execution result.
+    </Accordion>
+
+    <Accordion title="How is “Bad Performance” Defined?">
+        Cases would include but not limited to:
+
+        1. Failing to produce a block during a certain period of time
+        2. Slow performance: if the sequencer fails to produce the blocks vastly behind the average timing of other sequencers
+        3. Multiple Node Outages: If multiple nodes go offline at the same time, and they are all malicious, they should be punished more severely. This includes nodes that represent more than 1/3 of the total number of sequencers
+        4. Accumulated Unpacked Blocks: If a node does not pack a block for a certain number of transactions, other sequencers can vote to slash it.
+    </Accordion>
+
+</Accordions>

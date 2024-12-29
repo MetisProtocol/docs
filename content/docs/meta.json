@@ -1,0 +1,11 @@
+{
+  "title": "Metis Docs",
+  "pages": [
+    "index",
+    "quick-start",
+    "dapp-infra",
+    "misc",
+    "---Sequencer---",
+    "...sequencer"
+  ]
+}

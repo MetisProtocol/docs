@@ -1,3 +1,15 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary: 191 100% 40%;
+  --secondary: 191 50% 25%;
+  --accent: 198 100% 15%;
+  --neutral: 240 25% 11%;
+  --base-100: 0 0% 100%;
+  --info: 199 95.5% 73.9%;
+  --success: 171 76.9% 64.3%;
+  --warning: 50 97.8% 63.5%;
+  --error: 3 100% 79.6%;
+}

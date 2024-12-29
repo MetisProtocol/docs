@@ -1,0 +1,97 @@
+---
+title: NatSpec
+---
+
+Smart Contracts play a critical role in the Metis Layer 2 ecosystem, enabling secure and decentralized management of Sequencer operations and network activities. This section provides detailed **NatSpec (Ethereum Natural Specification Format)** documentation for both Mainnet and Testnet contracts. By adhering to NatSpec standards, we ensure clarity and transparency for developers and auditors alike.
+
+## Key Contracts
+
+| **Contract**    | **Ethereum Mainnet (`ChainId: 1`)**          | **Sepolia Testnet (`ChainId: 11155111`)**    |
+| --------------- | -------------------------------------------- | -------------------------------------------- |
+| **LockingInfo** | `0x0fe382b74c3894b65c10e5c12ae60bbd8faf5b48` | `0x390A6fE63385522E87e248BC5200f7d3a02F994b` |
+| **LockingPool** | `0xd54c868362c2098e0e46f12e7d924c6a332952dd` | `0x7591940125cC0344a65D60319d1ADcD463B2D4c3` |
+
+Sequencers can interact directly with these contracts to manage rewards, lock-ups, and related activities without requiring frontend tools.
+
+## Key Contract Functionality
+
+The following methods are provided to manage Sequencers efficiently. These include querying and updating your Sequencer's status, locking tokens, and handling rewards.
+
+### Reading Contract Information
+
+1. **`seqOwners`**
+   Retrieves comprehensive Sequencer status using the owner's address.
+   - **Parameter**: `seqId (uint256)` - The Sequencer ID.
+   - **Response**: Returns details of the Sequencer's operational state.
+2. **`seqSigners`**
+   Retrieves Sequencer information using the signer's address.
+   - **Parameter**: `seqId (uint256)` - The Sequencer ID.
+   - **Response**: Returns details of the Sequencer's operational state.
+3. **`sequencers`**
+   Accesses all detailed information about a Sequencer using its ID.
+
+   - **Parameter**: `seqId (uint256)` - The Sequencer ID.
+   - **Response**:
+
+     ```python
+     amount (uint256): Locked METIS tokens.
+     reward (uint256): Accrued rewards.
+     activationBatch (uint256): Activation batch number.
+     updatedBatch (uint256): Last updated batch number.
+     deactivationBatch (uint256): Deactivation batch number.
+     deactivationTime (uint256): Time of deactivation.
+     unlockClaimTime (uint256): Time for claiming unlocked tokens.
+     nonce (uint256): Nonce value.
+     owner (address): Owner's address.
+     signer (address): Signer's address.
+     pubkey (bytes): Signer's public key.
+     rewardRecipient (address): Reward distribution address.
+     status (uint8): Current Sequencer status.
+     ```
+
+### Writing Contract Information
+
+1. **`lockFor`**
+   Locks METIS tokens and assigns Sequencer ownership.
+   - **Parameters**:
+     - `_signer (address)`: Sequencer signer address.
+     - `_amount (uint256)`: Amount of METIS tokens to lock.
+     - `_signerPubkey (bytes)`: Uncompressed public key of the signer.
+2. **`lockWithRewardRecipient`**
+   Similar to `lockFor`, but includes an additional parameter to specify a reward recipient.
+   - **Parameters**:
+     - `_signer (address)`: Sequencer signer address.
+     - `_rewardRecipient (address)`: Reward recipient address.
+     - `_amount (uint256)`: Amount of METIS tokens to lock.
+     - `_signerPubkey (bytes)`: Uncompressed public key.
+3. **`relock`**
+   Adds more tokens to an existing lock or locks accrued rewards.
+   - **Parameters**:
+     - `_seqId (uint256)`: Sequencer ID.
+     - `_amount (uint256)`: Additional tokens to lock (can be `0` if relocking rewards).
+     - `_lockReward (bool)`: Whether to lock current rewards.
+4. **`setSequencerRewardRecipient`**
+   Updates or assigns a reward recipient address.
+   - **Parameters**:
+     - `_seqId (uint256)`: Sequencer ID.
+     - `_recipient (address)`: New reward recipient address.
+5. **`withdrawRewards`**
+   Withdraws accrued rewards to the specified address.
+   - **Parameters**:
+     - `_seqId (uint256)`: Sequencer ID.
+     - `_l2Gas (uint32)`: Gas limit for the operation.
+6. **`unlock`**
+   Initiates the unlocking process for METIS tokens.
+   - **Parameters**:
+     - `_seqId (uint256)`: Sequencer ID.
+     - `_l2Gas (uint32)`: Gas limit for the bridge operation.
+7. **`unlockClaim`**
+   Claims unlocked tokens after the mandatory 21-day waiting period.
+   - **Parameters**:
+     - `_seqId (uint256)`: Sequencer ID.
+     - `_l2Gas (uint32)`: Gas limit.
+8. **`withdraw`**
+   Partially withdraws locked tokens while maintaining the minimum lock balance.
+   - **Parameters**:
+     - `_amount (uint256)`: Amount to withdraw.
+     - `_seqId (uint256)`: Sequencer ID.

@@ -9,12 +9,17 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
-    "next": "15.1.2",
-    "fumadocs-ui": "14.6.6",
     "fumadocs-core": "14.6.6",
+    "fumadocs-mdx": "11.2.1",
+    "fumadocs-openapi": "^5.10.5",
+    "fumadocs-ui": "14.6.6",
+    "katex": "^0.16.18",
+    "next": "15.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "fumadocs-mdx": "11.2.1"
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0",
+    "shiki": "^1.24.4"
   },
   "devDependencies": {
     "@types/node": "22.10.2",

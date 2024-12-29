@@ -1,0 +1,263 @@
+---
+title: Guide
+description: The Decentralized Sequencer Pool is a critical step towards complete decentralization of Metis’ Layer 2 network, eliminating single points of failure associated with centralized sequencers. By combining existing decentralized P2P validators and block producers, it enhances stability, scalability, and fault tolerance.
+---
+
+import { Callout } from "fumadocs-ui/components/callout";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+
+<Callout type="info">
+  There are some prerequisites to running a sequencer. See
+  [Requirements](/docs/sequencer/operation/requirements) for more details.
+</Callout>
+
+<Steps>
+  <Step>
+
+## Set Up and Run Your Node
+
+Follow the provided technical documentation to deploy and initialize your Sequencer node:
+
+**Initialization**:
+
+1. Install and configure [Docker Compose](https://github.com/ericlee42/metis-sequencer-setup-docker-compose) or [Kubernetes](https://github.com/MetisProtocol/metis-charts/blob/main/README.md) on your server.
+2. Run the Sequencer node setup script:
+   - Generate the Sequencer address, private key, and public key during initialization.
+3. Back up your private key securely. Loss of the key may result in irrecoverable consequences.
+
+**Configuration**:
+
+- Deploy your node as instructed in the README file using Docker Compose or Kubernetes.
+- Ensure your private key address is backed up, and generate a local private key file for secure storage.
+
+</Step>
+
+<Step>
+
+## Submit Sequencer Information
+
+Submit your node's details via a GitHub pull request for inclusion in the Metis Decentralized Sequencer Dashboard.
+
+**Required Information**:
+
+- **Name**: Name of your Sequencer.
+- **Avatar**: A profile image/logo.
+- **URL**: Your organization's website.
+- **Address**: The whitelist address for sequencer lock-up.
+- **Seq_addr**: The sequencer address provided by the server after you run the Sequencer.
+- **Pubkey**: The public key provided by the server after you run the Sequencer. Please remove the extra ‘04’ characters from the generated pubkey.
+- **Description**: Brief introduction about you or your organization.
+
+**Submission Steps**:
+
+1. Fork the [metis-sequencer-resources](https://github.com/MetisProtocol/metis-sequencer-resources) repository.
+2. Create a new branch and add your Sequencer details.
+3. Submit a pull request for approval.
+
+</Step>
+
+<Step>
+
+## Synchronize Your Node
+
+### Wait for Sequencer Synchronization
+
+Run the node and wait for block synchronization to complete:
+
+1. Check the logs of the bridge container. Wait until the “`Waiting for themis to be synced`” message disappears, indicating that themis is synchronized to the latest height.
+2. `Query eth_getBlockByNumber` via the l2geth RPC to confirm the block height if it is synchronized to the latest.
+
+Once both the Bridge and L2geth are fully synchronized, you can proceed with the lock operation.
+
+<Callout type="warn">
+  Note: Ensure synchronization is complete before proceeding. Continuing
+  operations before synchronization is finished may result in lock events not
+  being recognized.
+</Callout>
+
+</Step>
+
+<Step>
+
+## Lock METIS Tokens
+
+<Callout type="warn">
+  The Metis tokens to be locked must be on Ethereum L1 (chainid:1)
+</Callout>
+
+You can complete the locking process through the [Sequencer Mining](https://sequencer.metis.io/) page. Alternatively, you can interact directly with the [contract](/docs/sequencer/operation/natspec) to bypass the frontend operations.
+
+### Locking Options
+
+You can lock METIS tokens using one of the following methods:
+
+1. **Via Sequencer Mining Page**:
+   - Access the user-friendly interface to complete the locking process directly through the [Sequencer Mining](https://sequencer.metis.io/) page.
+2. **Direct Contract Interaction**:
+   - For advanced users, bypass the frontend and interact directly with the smart contract.
+
+### Wallet Whitelisting
+
+Once your wallet address is added to the whitelist, you'll notice a **"Become a Sequencer"** button after connecting your MetaMask wallet. To initiate the process:
+
+1. **Connect Your Wallet**: Ensure your MetaMask is connected to the Ethereum network.
+2. **Start the Process**: Click the **"Become a Sequencer"** button to begin.
+
+### Pre-Requisites
+
+Before proceeding:
+
+- **Minimum METIS Tokens**: Ensure your wallet holds at least **20,000 METIS** on the Ethereum mainnet.
+
+### Node Setup
+
+Set up your Sequencer node using Kubernetes for deployment. While Kubernetes is the recommended method for deployment, additional deployment options will be introduced in the future.
+
+### Token Lock-Up
+
+The lock-up process is a critical step for participating in the Sequencer Pool:
+
+1. **Lock-Up Amount**:
+   - Enter the amount of METIS tokens you want to lock, ensuring a **minimum of 20,000 METIS** and a **maximum of 100,000 METIS**.
+2. **Confirm Transaction**:
+   - Click **"CONFIRM"** to execute the lock-up transaction and confirm it in your wallet.
+
+### Important Considerations
+
+- **Lock-Up Cap**: The maximum lock-up amount is 100,000 METIS. Transactions exceeding this cap will still execute; however, rewards will be calculated based on the capped amount of 100,000 METIS.
+- **Partial Withdrawals**: The functionality to partially withdraw locked tokens is not available yet. If you accidentally lock more than intended, you will need to exit and rejoin the Sequencer Pool. Note that there is a **21-day exit period**, during which rewards will not accrue.
+- **Plan Carefully**: Only lock the amount of METIS you are comfortable with, keeping in mind the operational limits and restrictions.
+
+### Completion
+
+Once the lock-up process is complete and you see the **"Complete"** confirmation page, congratulations—your Sequencer setup is now successful, and you are ready to operate as part of the Metis Decentralized Sequencer Pool.
+
+<Callout type="info">Rewards are capped at 100,000 METIS lock-up.</Callout>
+
+<Callout type="info">
+  Withdrawals before the 21-day exit period are not allowed.
+</Callout>
+
+</Step>
+
+<Step>
+
+## Activate Your Sequencer and Monitor via the Dashboard
+
+Once your Sequencer node is successfully running, proceed to the [Sequencer Dashboard](https://sequencer.metis.io) to monitor and manage your node. Within the dashboard, you can:
+
+- **View Operational Metrics**: Access real-time data about your Sequencer's performance, such as block production status and synchronization progress.
+- **Check Rewards**: Monitor your earned mining rewards and track reward distribution details.
+- **Node Health Status**: Ensure your node is operational and meeting network requirements.
+
+This dashboard provides you with a streamlined view of all essential metrics, making it easier to manage and optimize your Sequencer operations.
+
+</Step>
+
+<Step>
+
+## Daily Operations and Support
+
+To ensure your Sequencer operates efficiently and generates consistent earnings, follow these guidelines:
+
+### Daily Maintenance
+
+1. **Server and Network Health**:
+   - Maintain a stable server environment and network connection.
+   - Regularly monitor your node’s performance metrics to ensure proper block packaging and production.
+2. **Log Monitoring**:
+   - Review system logs frequently to detect and resolve any issues promptly.
+3. **Software Updates**:
+   - Keep your Sequencer node software updated to the latest version to avoid compatibility issues and ensure optimal performance.
+
+### Community Support
+
+If you encounter any issues or need assistance:
+
+- **Join the Community**: Connect with other Sequencer operators on the Metis Sequencer group via:
+  - [Discord](https://discord.gg/metis)
+  - [Telegram](https://t.me/metis_dev)
+- **Get Quick Help**: These groups provide real-time communication and a platform to share solutions and receive technical support from the Metis team and the community.
+
+Efficient daily operations and active engagement with the community will help you maintain your node's uptime and maximize your earnings.
+
+</Step>
+
+<Step>
+
+## Claim Mining Rewards
+
+Once your Sequencer starts earning rewards, you can claim them through the [Sequencer Dashboard](https://sequencer.metis.io):
+
+<Callout type="warn">
+  Please double-check your wallet address before submitting. If you are using a
+  contract address, make sure it is the correct contract address on Metis
+  Andromeda. Entering an incorrect address could result in the loss of rewards.
+</Callout>
+
+### Steps to Claim Rewards:
+
+1. **View Unclaimed Rewards**:
+
+   - Navigate to the Dashboard to check your current unclaimed rewards.
+
+2. **Initiate Claim Transaction**:
+
+   - Click the **"Claim"** button to begin the reward distribution process.
+
+3. **Confirm or Modify Wallet Address**:
+   - Verify your wallet address in the popup window.
+   - If needed, modify the address before submitting the transaction.
+
+<Callout type="warn">
+  Please double-check your wallet address before submitting. If you are using a
+  contract address, make sure it is the correct contract address on Metis
+  Andromeda. Entering an incorrect address could result in the loss of rewards.
+</Callout>
+
+4. **Rewards Distribution**:
+   - The rewards will be transferred to your specified address on the Metis Andromeda network.
+
+### Additional Practices
+
+#### Increasing Your Lock-Up Amount
+
+1. **Dashboard Update**:
+   - On the Sequencer Dashboard, view the current amount of locked METIS.
+2. **Increase Lock-Up**:
+   - Enter the additional METIS amount in the **"Increase"** field and confirm the transaction.
+3. **Maximum Cap**:
+   - The lock-up cap remains at **100,000 METIS**. Attempts to lock more will not yield additional rewards.
+
+#### Partial Withdrawals
+
+1. **Eligibility**:
+   - You can withdraw any amount exceeding the **20,000 METIS minimum** lock-up.
+   - The withdrawable amount is calculated as:\
+     \&#xNAN;_Total locked tokens – 20,000 METIS._
+2. **Initiate Withdrawal**:
+   - On the Dashboard, click **"Partial Withdraw."**
+   - Enter the desired amount, confirm the transaction in the popup, and validate it in MetaMask.
+3. **Token Transfer**:
+   - The withdrawn METIS will be sent to your **Owner address**.
+
+#### Exiting the Sequencer Pool
+
+1. **Initiate Unlock**:
+   - Click the **"Unlock"** button on the Dashboard and confirm the exit transaction in MetaMask.
+2. **21-Day Exit Period**:
+   - Your Sequencer will enter a **21-day waiting period** during which:
+     - Rewards will not be earned.
+     - Block production will stop.
+3. **Final Withdrawal**:
+   - After 21 days, return to the Dashboard to withdraw your locked METIS.
+
+### Sequencer Mining Rewards
+
+- The estimated **Mining Reward Rate (EMRR)** is **20%**, designed to incentivize Sequencer participation.
+- Rewards are calculated per block and updated every two weeks to maintain the target MRR.
+
+By following these guidelines, Sequencers can efficiently claim rewards, increase or withdraw their lock-up amounts, and avoid penalties while contributing to the security and stability of the Metis network.
+
+</Step>
+</Steps>

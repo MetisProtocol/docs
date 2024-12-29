@@ -1,0 +1,58 @@
+---
+title: Environment
+---
+
+Before you begin deploying smart contracts on Metis, you need to ensure that your development environment is properly configured.
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { Droplet } from "lucide-react";
+
+<Steps>
+<Step>
+
+### Install a Wallet
+
+- [Rabby](https://rabby.io)
+- [MetaMask](https://metamask.io)
+
+</Step>
+
+<Step>
+
+### Add The Metis Network to Your Wallet
+
+To connect to the **Metis Andromeda (Mainnet)** or **Metis Sepolia (Testnet)** network, you can use the cards below.
+
+<Cards>
+  <Card
+    title="Add Metis Andromeda (Mainnet)"
+    href="https://chainlist.org/chain/1088"
+    external
+  />
+  <Card
+    title="Add Metis Sepolia (Testnet)"
+    href="https://chainlist.org/chain/59902"
+    external
+  />
+</Cards>
+
+</Step>
+
+<Step>
+
+### Get Testnet Tokens (Metis Sepolia)
+
+If you are developing on the Metis Sepolia Testnet, you will need **sMETIS** tokens to test your transactions and smart contracts. You can get free testnet tokens by visiting the official Metis Sepolia Testnet Faucet.
+
+<Cards>
+  <Card
+    icon={<Droplet />}
+    title="Metis Sepolia Testnet Faucet"
+    href="https://faucet.metis.io"
+    external
+  />
+</Cards>
+
+</Step>
+</Steps>

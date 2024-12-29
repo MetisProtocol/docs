@@ -1,0 +1,34 @@
+---
+title: RPC Endpoints
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+import { Card, Cards } from "fumadocs-ui/components/card";
+
+In case when you need higher limits of the public RPC endpoints, there are two options:
+
+<Cards>
+  <Card title="Private RPC Endpoint">
+    Setting up a private RPC endpoint using a provider such as
+    [Nodies](https://www.nodies.app/) or [BlastAPI](https://blastapi.io/)
+  </Card>
+  <Card
+    title="Replica Node"
+    description="Setting up a replica node"
+    href="https://github.com/MetisProtocol/metis-ansible"
+    external
+  />
+  <Card
+    title="Metis Charts"
+    description="Managed through a Kubernetes cluster"
+    href="https://github.com/metisprotocol/metis-charts"
+    external
+  />
+</Cards>
+
+|                 | Andromeda (Mainnet)                                                                       | Sepolia (Testnet)                                        |
+| --------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| RPCs            | https://chainlist.org/chain/1088                                                          | https://chainlist.org/chain/59902                        |
+| Chain ID        | 1088                                                                                      | 59902                                                    |
+| Currency Symbol | METIS                                                                                     | sMETIS                                                   |
+| Block Explorer  | [Routescan](https://explorer.metis.io), [Blockscout](https://andromeda-explorer.metis.io) | [Blockscout](https://sepolia-explorer.metisdevops.link/) |
