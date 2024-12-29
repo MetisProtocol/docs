@@ -22,19 +22,19 @@ To achieve that, we utilize such technologies:
 ## Core Components
 
 1. **Ethereum Layer (L1)**
-   - [Smart Contracts](/docs/sequencer/operation/natspec):
+   - [Smart Contracts](/sequencer/operation/natspec):
      Responsible for locking METIS tokens, managing sequencer staking, and storing critical data for sequencer rotation.
-   - [Finality](/docs/sequencer/architecture/finality):
+   - [Finality](/sequencer/architecture/finality):
      Provides security and finality by anchoring transaction batches on Ethereum.
 2. **Consensus Layer (PoS)**
-   - [Tendermint-based Nodes](/docs/sequencer/architecture/selection-rotation):
+   - [Tendermint-based Nodes](/sequencer/architecture/selection-rotation):
      Handles consensus on sequencer rotation and election processes.
-   - [MPC (Multi-Party Computation)](/docs/sequencer/architecture/mpc):
+   - [MPC (Multi-Party Computation)](/sequencer/architecture/mpc):
      Enables secure and decentralized batch signing by sequencer nodes.
 3. **Metis Layer (L2)**
-   - [Sequencer Nodes](/docs/sequencer/architecture/sequencer):
+   - [Sequencer Nodes](/sequencer/architecture/sequencer):
      Processes user transactions, assembles blocks, and submits them to Ethereum L1.
-   - [Bridge & Adapter Module](/docs/sequencer/architecture/bridge):
+   - [Bridge & Adapter Module](/sequencer/architecture/bridge):
      Facilitates communication between the PoS layer and the Metis layer. It ensures synchronization and updates sequencer information.
 
 The system operates with seamless coordination between sequencers, validators, and block producers, leveraging decentralized infrastructure and community governance.
@@ -124,7 +124,7 @@ The transaction flow within the Metis Decentralized Sequencer system ensures eff
    - The batch is signed using an MPC mechanism, requiring signatures from a majority of active sequencers.
    - This process ensures decentralization and security for the batch submission.
 6. **Batch Submission to Ethereum (L1):**
-   - The signed batch is submitted to the Ethereum Layer 1 via the [Bridge & Adapter module](/docs/sequencer/architecture/bridge).
+   - The signed batch is submitted to the Ethereum Layer 1 via the [Bridge & Adapter module](/sequencer/architecture/bridge).
    - This ensures the finality of transactions by anchoring them on Ethereum.
 7. **Sequencer Rotation (if applicable):**
    - At periodic intervals or upon fault detection, the PoS layer rotates the sequencer role to a new node.
@@ -139,5 +139,5 @@ For a detailed, step-by-step guide on becoming a sequencer, including prerequisi
 <Card
   title="How to Become a Sequencer"
   description="Learn how to become a sequencer in the Metis Decentralized Sequencer system."
-  href="/docs/sequencer/operation"
+  href="/sequencer/operation"
 />

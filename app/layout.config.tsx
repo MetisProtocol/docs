@@ -11,7 +11,7 @@ import { Droplet } from "lucide-react";
 export const baseOptions: BaseLayoutProps = {
   nav: {
     title: "Metis Docs",
-    url: "/docs",
+    url: "/",
     enableSearch: true,
   },
   githubUrl: "https://github.com/MetisProtocol/docs",

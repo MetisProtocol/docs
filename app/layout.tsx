@@ -3,6 +3,9 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import "katex/dist/katex.css";
+import { DocsLayout } from "fumadocs-ui/layouts/notebook";
+import { baseOptions } from "@/app/layout.config";
+import { source } from "@/lib/source";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,7 +21,9 @@ export default function Layout({ children }: { children: ReactNode }) {
             forcedTheme: "dark",
           }}
         >
-          {children}
+          <DocsLayout tree={source.pageTree} {...baseOptions}>
+            {children}
+          </DocsLayout>
         </RootProvider>
       </body>
     </html>
