@@ -29,5 +29,4 @@ const Web3Provider = ({ children, session }: Props) => {
     </WagmiProvider>
   );
 };
-
 export default Web3Provider;

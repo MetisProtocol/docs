@@ -5,4 +5,10 @@ import { loader } from "fumadocs-core/source";
 export const source = loader({
   baseUrl: "/",
   source: createMDXSource(docs, meta),
+  baseRoutes: {
+    demo: {
+      path: "demo",
+      pattern: /^demo\//,
+    },
+  },
 });

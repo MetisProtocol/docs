@@ -37,6 +37,7 @@ export const authOptions: NextAuthOptions = {
           }
           return null;
         } catch (e) {
+          console.error(e);
           return null;
         }
       },

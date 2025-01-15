@@ -1,13 +1,11 @@
 "use client";
 
-import React from "react";
-
 import {
   useReadContract,
   useWriteContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
-import { SimpleNFT } from "./abi/SimpleNFT";
+import { SimpleNFT } from "@/components/abi/SimpleNFT";
 import { useSession } from "next-auth/react";
 
 const NFTGallery = () => {
