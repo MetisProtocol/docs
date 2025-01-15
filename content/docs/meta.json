@@ -3,6 +3,7 @@
   "pages": [
     "index",
     "quick-start",
+    "demo",
     "dapp-infra",
     "misc",
     "---Sequencer---",

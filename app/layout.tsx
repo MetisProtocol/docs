@@ -6,6 +6,7 @@ import "katex/dist/katex.css";
 import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 import { baseOptions } from "@/app/layout.config";
 import { source } from "@/lib/source";
+import { Banner } from "fumadocs-ui/components/banner";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -21,6 +22,11 @@ export default function Layout({ children }: { children: ReactNode }) {
             forcedTheme: "dark",
           }}
         >
+          <Banner>
+            Metis supports Berlin + PUSH0 of Shanghai (Solidity v0.8.23 and
+            lower)
+          </Banner>
+
           <DocsLayout tree={source.pageTree} {...baseOptions}>
             {children}
           </DocsLayout>

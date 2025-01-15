@@ -1,4 +1,4 @@
 {
   "title": "Misc",
-  "pages": ["help", "protocol", "predeploys", "audits", "faq"]
+  "pages": ["predeploy", "audits", "faq"]
 }

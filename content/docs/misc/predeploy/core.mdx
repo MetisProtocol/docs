@@ -1,12 +1,11 @@
 ---
-title: Predeployed Contract Addresses
+title: Core Predeploys
 ---
 
-The Metis protocol consists of several contracts that are deployed on some specific addresses. The contracts have been deployed on L2, L1, Andromeda, and Stardust testnet. You can use the etherscan explorer to see full details about deployed contract addresses. The [Metis Github page](https://github.com/MetisProtocol/mvm/tree/develop/packages/contracts/deployments) shows all the deployed contract addresses.
+The Metis protocol consists of several contracts that are deployed on some specific addresses. The contracts have been deployed on L2, L1, Andromeda, and Metis Sepolia testnet. The [Metis Github page](https://github.com/MetisProtocol/mvm/tree/develop/packages/contracts/deployments) shows all the core predeployed contracts addresses.
 
 | **Network**                                         | **Andromeda (Mainnet)**                    | **Sepolia (Testnet)**                      |
 | --------------------------------------------------- | ------------------------------------------ | ------------------------------------------ |
-| Chain ID                                            | 1088                                       | 59902                                      |
 | BondManager[^1]                                     | 0x595801b85628ec6979C420988b8843A40F850528 | 0xE0cDbb071144489b52Af578BDdea84dBDFd85576 |
 | CanonicalTransactionChain[^2]                       | 0x56a76bcC92361f6DF8D75476feD8843EdC70e1C9 | 0x5435d351e0aCc874579eC67Ba46440ee6AC892b8 |
 | ChainStorageContainer-CTC-batches[^3]               | 0x38473Feb3A6366757A249dB2cA4fBB2C663416B7 | 0x92F90779986C294A22DC43C8f6aE1F5d8B2728E4 |
@@ -30,17 +29,31 @@ The Metis protocol consists of several contracts that are deployed on some speci
 | StateCommitmentChain[^15]                           | 0xf209815E595Cdf3ed0aAF9665b1772e608AB9380 | 0xA059B3307f534943Ee6c710D9582B42543847Eb1 |
 
 [^1]: **BondManager** is a component responsible for managing and maintaining bonds or collateral deposits that are used to secure the network.
+
 [^2]: The **CanonicalTransactionChain** is essentially the ordered list of transactions that have been submitted to the Layer 2 chain. It serves as the official record of all transactions that have been processed and included in the chain.
+
 [^3]: The **ChainStorageContainer-CTC-batches** is a data structure that holds batches of transactions which are part of the CanonicalTransactionChain in Layer 2 solutions like Optimistic Rollups.
+
 [^4]: The **ChainStorageContainer-CTC-queue** is a data structure designed to manage and temporarily store transactions that are waiting to be included in the next batch of the CanonicalTransactionChain (CTC).
+
 [^5]: The **ChainStorageContainer-SCC-batches** is a data structure that holds batches of state commitments within a state commitment chain (SCC). These commitments represent the state of the Layer 2 chain at various points in time.
+
 [^6]: The **L1StandardBridge** is a smart contract deployed on Layer 1 (Ethereum mainnet) that handles the transfer of assets (such as ETH and ERC20 tokens) and messages between Layer 1 and Layer 2. The "**for verification only**" aspect indicates that this bridge is also responsible for verifying the correctness of state transitions and transactions that occur on Layer 2.
+
 [^7]: The **Lib_AddressManager** is a smart contract utility that serves as a registry for storing and managing addresses of key contracts and components in a Layer 2 solution. This central address management helps ensure that all components can easily locate and interact with each other.
+
 [^8]: The **MVM_CanonicalTransaction_for_verification_only** is a specialized component or function designed to handle the verification of transactions within a CanonicalTransactionChain. This component ensures that transactions are valid and adhere to the rules and protocols established by the Layer 2 (L2) solution.
+
 [^9]: The **MVM_DiscountOracle** is a service or smart contract that provides information about discounts or reduced transaction fees within the MetaMask Virtual Machine (MVM) or another blockchain-based ecosystem. This oracle supplies data that can be used to adjust the cost of operations dynamically.
+
 [^10]: The **MVM_L2ChainManagerOnL1_for_verification_only** is a smart contract or a set of smart contracts on the Ethereum mainnet (Layer 1) that manages and verifies the state and transactions of the Layer 2 chain. This component is focused solely on verification tasks to ensure the integrity and correctness of the L2 chain from the L1 perspective.
+
 [^11]: The **MVM_StateCommitmentChain_for_verification_only** is a specialized module or smart contract that manages and verifies state commitments on the Metis Layer 2 (L2) chain. It is responsible for recording cryptographic commitments to the state of the L2 chain and ensuring these commitments are valid and secure.
+
 [^12]: The **MVM_Verifier** is a smart contract or a module within the Metis Virtual Machine (MVM) dedicated to verifying the accuracy and integrity of transactions, state transitions, and other operations within the Layer 2 (L2) chain.
+
 [^13]: The **MVM_Verifier_for_verification_only** is a component within the Metis Virtual Machine that exclusively handles the verification of transactions and state transitions. Its purpose is to ensure the validity and integrity of these operations, playing a crucial role in the security and reliability of the Metis Layer 2 chain.
+
 [^14]: The **OVM_L1CrossDomainMessenger** is a smart contract deployed on the Ethereum mainnet (L1) that handles the sending and receiving of messages between Layer 1 and Layer 2. This component is essential for enabling cross-domain interactions, allowing contracts and users on L1 to communicate with contracts and users on L2.
+
 [^15]: The **SCC contract** is a smart contract deployed on the L1 blockchain that records and manages cryptographic commitments to the state of the L2 chain. It plays a vital role in anchoring the L2 state to L1, ensuring security and verifiability.
