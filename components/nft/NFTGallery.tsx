@@ -1,6 +1,6 @@
 "use client";
 
-import { useWriteContract } from "wagmi";
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { SimpleNFT } from "@/components/abi/SimpleNFT";
 import { useSession } from "next-auth/react";
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
@@ -8,19 +8,13 @@ import AllNFTs from "@/components/nft/AllNFTs";
 import MyNFTs from "@/components/nft/MyNFTs";
 import { GET_ALL_NFTS, GET_NFTS_BY_ADDRESS } from "@/lib/queries";
 import { useQuery } from "@apollo/client";
+import { useEffect } from "react";
 
 const NFTGallery = () => {
   const { data: session } = useSession();
 
   // Write contract interaction for minting
-  const { writeContract: mint, isPending } = useWriteContract({
-    mutation: {
-      onSettled: () => {
-        allNFTsRefetch();
-        myNFTsRefetch();
-      },
-    },
-  });
+  const { data: hash, writeContract: mint, isPending } = useWriteContract();
 
   const {
     loading: allNFTsLoading,
@@ -39,6 +33,15 @@ const NFTGallery = () => {
   } = useQuery(GET_NFTS_BY_ADDRESS, {
     variables: { id: session?.address, skip: 0, first: 10 },
   });
+
+  const { isSuccess } = useWaitForTransactionReceipt({ hash });
+
+  useEffect(() => {
+    if (isSuccess) {
+      allNFTsRefetch();
+      myNFTsRefetch();
+    }
+  }, [isSuccess, allNFTsRefetch, myNFTsRefetch]);
 
   return (
     <div className="w-full max-w-4xl mx-auto p-4">

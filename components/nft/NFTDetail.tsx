@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useWriteContract } from "wagmi";
+import React, { useEffect, useState } from "react";
+import { useWaitForTransactionReceipt, useWriteContract } from "wagmi";
 import { SimpleNFT } from "../abi/SimpleNFT";
 import { useSession } from "next-auth/react";
 import { NFT } from "@/lib/const";
@@ -18,14 +18,17 @@ export const NFTDetail = ({
   const { data: session } = useSession();
   const [sendAddress, setSendAddress] = useState<string | null>(null);
 
-  const { writeContract: transferNFT } = useWriteContract({
-    mutation: {
-      onSuccess: () => {
-        if (allNFTsRefetch) allNFTsRefetch();
-        if (myNFTsRefetch) myNFTsRefetch();
-      },
-    },
-  });
+  const { data: hash, writeContract: transferNFT, isPending } = useWriteContract();
+
+  const { isSuccess } = useWaitForTransactionReceipt({ hash });
+
+  // TODO: Fix bug where the refetch is not working for allNFTsRefetch
+  useEffect(() => {
+    if (isSuccess) {
+      allNFTsRefetch?.();
+      myNFTsRefetch?.();
+    }
+  }, [isSuccess, allNFTsRefetch, myNFTsRefetch]);
 
   return (
     <div className="overflow-x-auto">
@@ -76,7 +79,7 @@ export const NFTDetail = ({
                         }
                         disabled={!sendAddress}
                       >
-                        Transfer
+                        {isPending ? "Transferring..." : "Transfer"}
                       </button>
                     </div>
                   </td>
