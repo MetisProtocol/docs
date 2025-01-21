@@ -21,11 +21,15 @@ export const authOptions: NextAuthOptions = {
       },
       async authorize(credentials, req) {
         try {
-          const siwe = new SiweMessage(credentials?.message || "");
+          if (!credentials?.message || !credentials?.signature) {
+            return null;
+          }
+
+          const siwe = new SiweMessage(credentials.message);
           const nextAuthUrl = new URL(process.env.NEXTAUTH_URL!);
 
           const result = await siwe.verify({
-            signature: credentials?.signature || "",
+            signature: credentials?.signature,
             domain: nextAuthUrl.host,
             nonce: await getCsrfToken({ req: { headers: req.headers } }),
           });
@@ -45,6 +49,7 @@ export const authOptions: NextAuthOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
@@ -55,7 +60,6 @@ export const authOptions: NextAuthOptions = {
         user: {
           ...session.user,
           name: token.sub,
-          image: "https://www.fillmurray.com/128/128",
         },
       };
     },

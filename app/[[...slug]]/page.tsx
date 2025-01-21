@@ -9,6 +9,7 @@ import {
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import Web3Provider from "@/components/providers/Web3Provider";
+import { ApolloProvider } from "@/components/providers/ApolloProvider";
 
 // Define which paths should include the Web3Provider
 const WEB3_ENABLED_PATHS = ["demo"];
@@ -39,7 +40,13 @@ export default async function Page(props: PageProps) {
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
-      {shouldEnableWeb3 ? <Web3Provider>{Content}</Web3Provider> : Content}
+      {shouldEnableWeb3 ? (
+        <ApolloProvider>
+          <Web3Provider>{Content}</Web3Provider>
+        </ApolloProvider>
+      ) : (
+        Content
+      )}
     </DocsPage>
   );
 }
