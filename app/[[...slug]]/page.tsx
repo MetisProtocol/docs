@@ -19,9 +19,9 @@ interface PageProps {
   params: Promise<{ slug?: string[] }>;
 }
 
-const mdxComponents: MDXComponents = {
+const mdxComponents = {
   ...defaultMdxComponents,
-};
+} satisfies MDXComponents;
 
 export default async function Page(props: PageProps) {
   const { slug = [] } = await props.params;
@@ -35,22 +35,22 @@ export default async function Page(props: PageProps) {
 
   const MDX = page.data.body;
 
+  const Content = (
+    <DocsBody>
+      <MDX components={mdxComponents} />
+    </DocsBody>
+  );
+
   return (
     <DocsPage toc={page.data.toc} full={page.data.full}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       {shouldEnableWeb3 ? (
         <ApolloProvider>
-          <Web3Provider>
-            <DocsBody>
-              <MDX components={mdxComponents} />
-            </DocsBody>
-          </Web3Provider>
+          <Web3Provider>{Content}</Web3Provider>
         </ApolloProvider>
       ) : (
-        <DocsBody>
-          <MDX components={mdxComponents} />
-        </DocsBody>
+        Content
       )}
     </DocsPage>
   );
