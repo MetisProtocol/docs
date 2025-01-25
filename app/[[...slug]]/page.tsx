@@ -21,7 +21,7 @@ interface PageProps {
 
 const mdxComponents = {
   ...defaultMdxComponents,
-} satisfies MDXComponents;
+} as MDXComponents;
 
 export default async function Page(props: PageProps) {
   const { slug = [] } = await props.params;
