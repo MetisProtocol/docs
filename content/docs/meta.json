@@ -2,11 +2,11 @@
   "title": "Metis Docs",
   "pages": [
     "index",
-    "quick-start",
-    "demo",
-    "dapp-infra",
-    "misc",
+    "---DApp---",
+    "...dapp",
     "---Sequencer---",
-    "...sequencer"
+    "...sequencer",
+    "---Network---",
+    "...network"
   ]
 }

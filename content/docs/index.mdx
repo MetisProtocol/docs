@@ -1,14 +1,33 @@
 ---
-title: Metis L2 Docs
+title: Welcome!
 description: Metis Developer Documentation
 ---
 
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { PlayCircle, Code2, Server } from "lucide-react";
+
 Metis is a next-generation **Layer 2 Ethereum solution**, designed to empower decentralized applications and businesses with **scalability, low-cost transactions**, and a user-centric ecosystem. By leveraging advanced technologies like **Optimistic Rollups** and **Decentralized Sequencers**, Metis aims to overcome the limitations of traditional blockchain networks while maintaining the core ethos of decentralization and security.
+
+<Cards className="sm:grid-cols-3">
+  <Card title="New to Blockchain" href="/dapp/start/demo" icon={<PlayCircle />}>
+    Start the Interactive Demo
+  </Card>
+  <Card title="Experienced DApp Dev" href="/dapp/benefits" icon={<Code2 />}>
+    Benefits of Building
+  </Card>
+  <Card
+    title="Node Providers"
+    href="/dapp/infra/rpcs#self-hosted"
+    icon={<Server />}
+  >
+    Network Operation
+  </Card>
+</Cards>
 
 ## Key Features of Metis
 
 - **Scalability**: Supports high transaction throughput while maintaining low latency and cost.
-- **Ethereum Compatibility**: Fully compatible with Ethereum’s EVM, making it easy for developers to deploy dApps.
+- **Ethereum Compatibility**: Fully compatible with Ethereum's EVM, making it easy for developers to deploy dApps.
 - **Decentralized Sequencing**: Eliminates single points of failure by decentralizing the process of transaction ordering and block production.
 - **Community-Driven Governance**: Encourages collaboration and community-led decision-making.
 - **Cross-Chain Interoperability**: Facilitates seamless asset and data transfer between Ethereum Layer 1 and Metis Layer 2.

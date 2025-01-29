@@ -27,7 +27,7 @@ export default async function Page(props: PageProps) {
   const { slug = [] } = await props.params;
 
   // Check if the current path should have Web3Provider
-  const shouldEnableWeb3 = slug[0] && WEB3_ENABLED_PATHS.includes(slug[0]);
+  const shouldEnableWeb3 = slug[2] && WEB3_ENABLED_PATHS.includes(slug[2]);
 
   // Get the page data
   const page = source.getPage(slug);
