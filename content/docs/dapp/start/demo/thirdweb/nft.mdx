@@ -1,0 +1,47 @@
+---
+title: Deploy NFT
+---
+
+import Profile from "@/components/thirdweb/Profile";
+import NFTGallery from "@/components/thirdweb/NFTGallery";
+
+<Profile />
+
+You do not need to have test metis in your wallet when using thirdweb's account abstraction.
+
+This Application is using the [Metis Sepolia Testnet](https://sepolia-explorer.metisdevops.link/address/0x70062f9a402bfe8B1f98a18a5d5541b99a58023A) and directly indexing the NFTs by deploying a custom subgraph using [Ormi](/dapp/infra/indexers/ormi/0xgraph). The subgraph is located [here](https://metisapi.0xgraph.xyz/api/public/7628e867-6568-4fe1-9c24-742d1ffc6e79/subgraphs/erc721/v0.0.1/gn).
+
+<NFTGallery />
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+/**
+ * @title SimpleNFT
+ * @dev Implementation of an enumerable ERC721 NFT token
+ */
+contract SimpleNFT is ERC721 {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    constructor(
+        string memory name,
+        string memory symbol
+    ) ERC721(name, symbol) {}
+
+    /**
+     * @dev Mint a new token
+     */
+    function mint() public returns (uint256) {
+        _tokenIds.increment();
+        uint256 newTokenId = _tokenIds.current();
+
+        _safeMint(msg.sender, newTokenId);
+        return newTokenId;
+    }
+}
+```

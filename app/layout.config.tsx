@@ -32,15 +32,15 @@ export const baseOptions: BaseLayoutProps = {
     },
     {
       type: "menu",
-      text: "Help Centers",
+      text: "Developer Channels",
       items: [
-        {
-          text: "Discord",
-          url: "https://discord.gg/metis",
-        },
         {
           text: "Telegram",
           url: "https://t.me/metis_dev",
+        },
+        {
+          text: "Twitter",
+          url: "https://x.com/metisdevs",
         },
       ],
     },

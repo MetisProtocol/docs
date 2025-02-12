@@ -2,14 +2,14 @@
 title: Deploy NFT
 ---
 
-import Profile from "@/components/Profile";
-import NFTGallery from "@/components/nft/NFTGallery";
+import Profile from "@/components/rainbowkit/Profile";
+import NFTGallery from "@/components/rainbowkit/NFTGallery";
 
 <Profile />
 
 After logging in, you need to have test metis in your wallet. You can get some from [here](https://faucet.metis.io/).
 
-This Application is using the [Metis Sepolia testnet](https://sepolia-explorer.metisdevops.link/address/0x70062f9a402bfe8B1f98a18a5d5541b99a58023A) and directly indexing the NFTs by deploying a custom subgraph.
+This Application is using the [Metis Sepolia Testnet](https://sepolia-explorer.metisdevops.link/address/0x70062f9a402bfe8B1f98a18a5d5541b99a58023A) and directly indexing the NFTs by deploying a custom subgraph using [Ormi](/dapp/infra/indexers/ormi/0xgraph). The subgraph is located [here](https://metisapi.0xgraph.xyz/api/public/7628e867-6568-4fe1-9c24-742d1ffc6e79/subgraphs/erc721/v0.0.1/gn).
 
 <NFTGallery />
 

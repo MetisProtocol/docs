@@ -8,12 +8,14 @@ import {
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
-import Web3Provider from "@/components/providers/Web3Provider";
-import { ApolloProvider } from "@/components/providers/ApolloProvider";
+import Web3Provider from "@/components/rainbowkit/Provider";
+import { ApolloProvider } from "@/components/ApolloProvider";
 import type { MDXComponents } from "mdx/types";
+import { ThirdwebProvider } from "thirdweb/react";
 
 // Define which paths should include the Web3Provider
 const WEB3_ENABLED_PATHS = ["demo"];
+const THIRDWEB_ENABLED_PATHS = ["thirdweb"];
 
 interface PageProps {
   params: Promise<{ slug?: string[] }>;
@@ -28,6 +30,7 @@ export default async function Page(props: PageProps) {
 
   // Check if the current path should have Web3Provider
   const shouldEnableWeb3 = slug[2] && WEB3_ENABLED_PATHS.includes(slug[2]);
+  const isThirdWeb = slug[3] && THIRDWEB_ENABLED_PATHS.includes(slug[3]);
 
   // Get the page data
   const page = source.getPage(slug);
@@ -47,7 +50,11 @@ export default async function Page(props: PageProps) {
       <DocsDescription>{page.data.description}</DocsDescription>
       {shouldEnableWeb3 ? (
         <ApolloProvider>
-          <Web3Provider>{Content}</Web3Provider>
+          {isThirdWeb ? (
+            <ThirdwebProvider>{Content}</ThirdwebProvider>
+          ) : (
+            <Web3Provider>{Content}</Web3Provider>
+          )}
         </ApolloProvider>
       ) : (
         Content
