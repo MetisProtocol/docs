@@ -56,13 +56,13 @@ const NFTGallery = () => {
   });
 
   const { isSuccess: isSuccessMint } = useWaitForReceipt({
-    transactionHash: mintData?.transactionHash!,
+    transactionHash: mintData?.transactionHash || "0x0",
     client,
     chain: defineChain(59902),
   });
 
   const { isSuccess: isSuccessTransfer } = useWaitForReceipt({
-    transactionHash: transferData?.transactionHash!,
+    transactionHash: transferData?.transactionHash || "0x0",
     client,
     chain: defineChain(59902),
   });
@@ -86,7 +86,11 @@ const NFTGallery = () => {
       contract,
       method:
         "function transferFrom(address from, address to, uint256 tokenId)",
-      params: [account?.address!, sendAddress!, BigInt(nft.identifier!)],
+      params: [
+        account?.address || "",
+        sendAddress || "",
+        BigInt(nft.identifier || 0),
+      ],
     });
     sendTx(transaction);
   };
@@ -115,15 +119,15 @@ const NFTGallery = () => {
         <Tab value="All NFTs">
           <AllNFTs
             isLoading={allNFTsLoading}
-            nfts={allNFTsData?.erc721Tokens}
+            nfts={allNFTsData?.erc721Tokens || []}
             fetchMore={allNFTsFetchMore}
           />
         </Tab>
         <Tab value="My NFTs">
           <MyNFTs
-            userAddress={account?.address!}
+            userAddress={account?.address || ""}
             isLoading={myNFTsLoading}
-            nfts={myNFTsData?.account?.ERC721tokens}
+            nfts={myNFTsData?.account?.ERC721tokens || []}
             fetchMore={myNFTsFetchMore}
             transfer={transfer}
             setSendAddress={setSendAddress}

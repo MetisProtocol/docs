@@ -44,7 +44,7 @@ const NFTGallery = () => {
     fetchMore: myNFTsFetchMore,
     refetch: myNFTsRefetch,
   } = useQuery(GET_NFTS_BY_ADDRESS, {
-    variables: { id: session?.address, skip: 0, first: 10 },
+    variables: { id: session?.address || null, skip: 0, first: 10 },
   });
 
   const { isSuccess: isSuccessMint } = useWaitForTransactionReceipt({
@@ -74,7 +74,7 @@ const NFTGallery = () => {
       address: "0x70062f9a402bfe8B1f98a18a5d5541b99a58023A",
       abi: SimpleNFT,
       functionName: "transferFrom",
-      args: [session?.address, sendAddress, nft.identifier],
+      args: [session?.address || "", sendAddress || "", nft.identifier || 0],
     });
   };
 
@@ -101,15 +101,15 @@ const NFTGallery = () => {
         <Tab value="All NFTs">
           <AllNFTs
             isLoading={allNFTsLoading}
-            nfts={allNFTsData?.erc721Tokens}
+            nfts={allNFTsData?.erc721Tokens || []}
             fetchMore={allNFTsFetchMore}
           />
         </Tab>
         <Tab value="My NFTs">
           <MyNFTs
-            userAddress={session?.address!}
+            userAddress={session?.address || ""}
             isLoading={myNFTsLoading}
-            nfts={myNFTsData?.account?.ERC721tokens}
+            nfts={myNFTsData?.account?.ERC721tokens || []}
             fetchMore={myNFTsFetchMore}
             transfer={transfer}
             setSendAddress={setSendAddress}
