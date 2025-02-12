@@ -19,13 +19,13 @@ const Profile = () => {
         sponsorGas: true,
       }}
       auth={{
-        isLoggedIn: async (address) => {
+        isLoggedIn: async () => {
           return await isLoggedIn();
         },
         doLogin: async (params) => {
           await login(params);
         },
-        getLoginPayload: async ({ address }) =>
+        getLoginPayload: async ({ address }: { address: string }) =>
           generatePayload({ address, chainId: 59902 }),
         doLogout: async () => {
           await logout();
