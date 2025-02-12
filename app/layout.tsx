@@ -7,6 +7,7 @@ import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 import { baseOptions } from "@/app/layout.config";
 import { source } from "@/lib/source";
 import { Banner } from "fumadocs-ui/components/banner";
+import { AskCookbook } from "@/components/AskCookbook";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,6 +31,8 @@ export default function Layout({ children }: { children: ReactNode }) {
           <DocsLayout tree={source.pageTree} {...baseOptions}>
             {children}
           </DocsLayout>
+
+          <AskCookbook />
         </RootProvider>
       </body>
     </html>
