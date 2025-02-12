@@ -3,6 +3,7 @@ title: RPCs
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
+import { Server, Container, Cloud, Zap, Network } from "lucide-react";
 
 |                 | Andromeda (Mainnet)                                                                       | Sepolia (Testnet)                                        |
 | --------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------- |
@@ -20,17 +21,25 @@ All public RPCs are rate limited, in the case you need higher rate limits, there
     title="Replica Node (Ansible)"
     href="https://github.com/MetisProtocol/metis-ansible"
     external
+    icon={<Server />}
   />
   <Card
     title="Metis Charts (Kubernetes)"
     href="https://github.com/metisprotocol/metis-charts"
     external
+    icon={<Container />}
   />
 </Cards>
 
 ## Private RPC Providers
 
-<Cards>
-  <Card title="Nodies" href="https://www.nodies.app" external />
-  <Card title="BlastAPI" href="https://blastapi.io" external />
+<Cards className="sm:grid-cols-3">
+  <Card
+    title="Nodies"
+    href="https://www.nodies.app"
+    external
+    icon={<Cloud />}
+  />
+  <Card title="BlastAPI" href="https://blastapi.io" external icon={<Zap />} />
+  <Card title="dRPC" href="https://drpc.org" external icon={<Network />} />
 </Cards>

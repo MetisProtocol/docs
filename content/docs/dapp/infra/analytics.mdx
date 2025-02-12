@@ -3,6 +3,7 @@ title: Analytics
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
+import { LineChart, Search, PieChart } from "lucide-react";
 
 Data and analytics are essential for tracking your project's growth.
 
@@ -13,15 +14,18 @@ Data and analytics are essential for tracking your project's growth.
     title="DefiLlama"
     href="https://defillama.com/chain/Metis?tvl=true"
     external
+    icon={<LineChart />}
   />
   <Card
     title="Routescan Explorer"
     href="https://explorer.metis.io/chart?id=tx"
     external
+    icon={<Search />}
   />
   <Card
     title="GrowThePie"
     href="https://www.growthepie.xyz/chains/metis"
     external
+    icon={<PieChart />}
   />
 </Cards>

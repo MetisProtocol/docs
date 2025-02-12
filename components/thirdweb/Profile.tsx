@@ -20,17 +20,14 @@ const Profile = () => {
       }}
       auth={{
         isLoggedIn: async (address) => {
-          console.log("checking if logged in!", { address });
           return await isLoggedIn();
         },
         doLogin: async (params) => {
-          console.log("logging in!");
           await login(params);
         },
         getLoginPayload: async ({ address }) =>
           generatePayload({ address, chainId: 59902 }),
         doLogout: async () => {
-          console.log("logging out!");
           await logout();
         },
       }}
