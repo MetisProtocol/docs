@@ -54,6 +54,27 @@ This document provides a detailed breakdown of the system components, workflows,
 
 ## System Architecture
 
+```mermaid
+graph TB
+    User[User/dApp] -->|Submit Transaction| RPC[RPC Node]
+    RPC -->|Forward| Bridge[Bridge & Adapter]
+    Bridge -->|Validate| PoS[PoS Layer]
+    PoS -->|Select| Sequencer[Current Sequencer]
+    Sequencer -->|Create Block| P2P[P2P Network]
+    Sequencer -->|Batch Txs| MPC[MPC Module]
+    MPC -->|Sign Batch| L1[Ethereum L1]
+    L1 -->|Verify| Verifier[Verifier]
+
+    subgraph "Layer 2"
+        RPC
+        Bridge
+        PoS
+        Sequencer
+        P2P
+        MPC
+    end
+```
+
 The architecture of the Metis Decentralized Sequencer system is designed to achieve full decentralization, fault tolerance, and scalability for the Layer 2 network. It integrates three key layers that coordinate to ensure efficient transaction processing and secure block production.
 
 Simplified transaction flow overview:

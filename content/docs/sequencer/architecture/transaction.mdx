@@ -5,6 +5,25 @@ description: This document outlines the transaction processing within the Metis 
 
 import { Step, Steps } from "fumadocs-ui/components/steps";
 
+```mermaid
+sequenceDiagram
+    participant User
+    participant RPC
+    participant Sequencer
+    participant MPC
+    participant L1
+    participant Verifier
+
+    User->>RPC: Submit Transaction
+    RPC->>Sequencer: Forward Transaction
+    Sequencer->>Sequencer: Create Block
+    Sequencer->>MPC: Request Batch Signature
+    MPC-->>Sequencer: Return Signature
+    Sequencer->>L1: Submit Batch
+    L1->>Verifier: Verify Batch
+    Verifier-->>L1: Confirm Finality
+```
+
 <Steps>
 
 <Step>

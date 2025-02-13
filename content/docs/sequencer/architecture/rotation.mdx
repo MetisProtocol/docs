@@ -22,6 +22,17 @@ This code implements a weighted random selection algorithm to choose blockchain 
 4. To select a validator, It does a binary search to find which validator's range the random number falls into;
 5. Lastly, it repeats steps 3-4 to select N producers based on their relative voting power;
 
+```mermaid
+stateDiagram-v2
+    [*] --> Active: Lock METIS Tokens
+    Active --> Selected: Random Selection
+    Selected --> Producing: Start Block Production
+    Producing --> Rotating: End of Period
+    Rotating --> Active: New Sequencer Selected
+    Active --> Exiting: Initiate Exit
+    Exiting --> [*]: After 21 Days
+```
+
 ## Example
 
 The current lock is 20000 METIS, which means votingPower is 20000. To be more precise:

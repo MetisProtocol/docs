@@ -5,9 +5,27 @@ title: Sequencer Node
 The Sequencer Node includes:
 
 1. L2 Geth (including the OP-Node)
-2. Batch submitter (Proposer)
-3. Adapter module
-4. MPC module (see the next section)
+2. Batch Submitter (Proposer)
+3. Adapter Module
+4. MPC Module
+
+```mermaid
+graph TB
+    subgraph "Sequencer Node"
+        L2Geth[L2 Geth]
+        Batcher[Batch Submitter]
+        Adapter[Adapter Module]
+        MPC[MPC Module]
+    end
+
+    Txs[Transactions] -->|Submit| L2Geth
+    L2Geth -->|Sequence| Batcher
+    Batcher -->|Request Signature| MPC
+    MPC -->|Sign Batch| L1[Ethereum L1]
+
+    PoS[PoS Layer] -->|Rotation Info| Adapter
+    Adapter -->|Update| L2Geth
+```
 
 ## L2 Geth (including the OP-Node)
 
@@ -15,18 +33,18 @@ The Sequencer Node includes:
 - The processing logic of whether it is the current block sequencer is added in the `applyTransactionToTip` function, to conduct regular sequencer rotation.
 - The sequencer (OP-NODE) node obtains the current sequencer position in the rotation list which corresponds to the block height with the help of the Adapter module (see below) from the MPC Consensus Layer. It checks whether it is the current sequencer in the rotation – if so, constructs the batch, if not, does not construct the batch.
 
-## Batch submitter (Proposer)
+## Batch Submitter (Proposer)
 
 - Responsible for building the batches and submitting them to Layer 1 after they get signed by multiple sequencers;
 - For decentralization it utilizes MPC. Multiple sequencers sign the transaction batch jointly when the transaction batch is being formed.
 - MPC service signs the batch submission with such entry parameters: `batchID`, `signHash`, and the signature result has such parameters: `batchID`: return value: signature r, s, v-values.
 - Query the corresponding `signHash` according to the `batchID`: Input parameter: `batchID` – return value: `signHash`
 
-## Adapter module
+## Adapter Module
 
 - Responsible for interacting with the other external modules on the consensus layer (PoS Node).
 
-## Additional information
+## Additional Information
 
 The core problem of the single-sequencer model adopted by other Layer 2 networks is the the inability to perform sequencer rotation. Here is how Metis tackles it:
 

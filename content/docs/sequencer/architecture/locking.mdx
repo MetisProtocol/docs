@@ -18,8 +18,23 @@ Reference examples:
 
 ## **Locking NFT**
 
+```mermaid
+stateDiagram-v2
+    [*] --> Locked: Lock METIS
+    Locked --> Active: Mint NFT
+    Active --> Waiting: Request Exit
+    Waiting --> Unlocked: After 21 Days
+    Unlocked --> [*]: Burn NFT
+
+    Active --> UpdatedStake: Increase Stake
+    UpdatedStake --> Active
+
+    Active --> UpdatedSigner: Change Signer
+    UpdatedSigner --> Active
+```
+
 Every user who successfully locks tokens and applies to become a sequencer will get an NFT. The tokenId of the NFT is the sequence id corresponding to the sequencer. On the contrary, when the unlocked token exits the sequencer, the corresponding NFT token will be destroyed.
 
 If the user accidentally transfers the NFT to others, he will not be able to withdraw the locked METIS. In order to prevent this from happening, the transfer of the NFT obtained by the user is restricted in the contract. Only the LockingPool owns the mint/burn/transfer permissions. Because after the NFT contract is successfully deployed, the owner will be transferred to the LockingPool.
 
-If the user who has already locked the METIS really needs to replace the signer, then the updateSigner method is provided in the LockingPool contract, which can help the user to replace the signer and transfer the NFT
+If the user who has already locked the METIS needs to replace the signer, then the updateSigner method is provided in the LockingPool contract, which can help the user to replace the signer and transfer the NFT

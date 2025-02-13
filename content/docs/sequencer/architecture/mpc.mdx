@@ -12,6 +12,26 @@ Multi Party Computation (MPC) module is a part of Sequencer node and is responsi
 
 ## Core Method Processing Flow
 
+```mermaid
+sequenceDiagram
+    participant Initiator
+    participant MPCNodes
+    participant TSSLib
+    participant Storage
+
+    Initiator->>MPCNodes: keyGenPrepare (sessionID)
+    MPCNodes->>Storage: Check Local Data
+    Storage-->>MPCNodes: Data Status
+    MPCNodes-->>Initiator: keyGenReady
+
+    Initiator->>MPCNodes: keyGenStart
+    MPCNodes->>TSSLib: Construct LocalParty
+    TSSLib->>MPCNodes: Process Key Generation
+    MPCNodes->>Storage: Store Key Data
+    Storage-->>MPCNodes: Confirm Storage
+    MPCNodes-->>Initiator: Key Generation Complete
+```
+
 `keyGen` process flow
 
 Phase 1: Notifying MPC Nodes to Prepare
