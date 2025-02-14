@@ -8,9 +8,20 @@ import { baseOptions } from "@/app/layout.config";
 import { source } from "@/lib/source";
 import { Banner } from "fumadocs-ui/components/banner";
 import { AskCookbook } from "@/components/AskCookbook";
+import { baseUrl } from "@/lib/metadata";
+import { createMetadata } from "@/lib/metadata";
 
 const inter = Inter({
   subsets: ["latin"],
+});
+
+export const metadata = createMetadata({
+  title: {
+    template: "%s | Metis Docs",
+    default: "Metis Docs",
+  },
+  description: "The documentation for Metis L2",
+  metadataBase: baseUrl,
 });
 
 export default function Layout({ children }: { children: ReactNode }) {

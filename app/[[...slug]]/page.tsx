@@ -12,7 +12,9 @@ import Web3Provider from "@/components/rainbowkit/Provider";
 import { ApolloProvider } from "@/components/ApolloProvider";
 import type { MDXComponents } from "mdx/types";
 import { ThirdwebProvider } from "thirdweb/react";
-import { metadataImage } from "@/lib/metadata";
+import { metadataImage } from "@/lib/metadata-image";
+import { createMetadata } from "@/lib/metadata";
+import { Metadata } from "next/types";
 
 // Define which paths should include the Web3Provider
 const WEB3_ENABLED_PATHS = ["demo"];
@@ -37,6 +39,8 @@ export default async function Page(props: PageProps) {
   const page = source.getPage(slug);
   if (!page) notFound();
 
+  const path = `content/docs/${page.file.path}`;
+
   const MDX = page.data.body;
 
   const Content = (
@@ -46,7 +50,16 @@ export default async function Page(props: PageProps) {
   );
 
   return (
-    <DocsPage toc={page.data.toc} full={page.data.full}>
+    <DocsPage
+      toc={page.data.toc}
+      full={page.data.full}
+      editOnGithub={{
+        repo: "docs",
+        owner: "MetisProtocol",
+        sha: "main",
+        path,
+      }}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       {shouldEnableWeb3 ? (
@@ -64,17 +77,27 @@ export default async function Page(props: PageProps) {
   );
 }
 
-export async function generateStaticParams() {
-  return source.generateParams();
-}
+export async function generateMetadata(props: {
+  params: Promise<{ slug: string[] }>;
+}): Promise<Metadata> {
+  const params = await props.params;
+  const page = source.getPage(params.slug);
 
-export async function generateMetadata(props: PageProps) {
-  const { slug } = await props.params;
-  const page = source.getPage(slug);
   if (!page) notFound();
 
-  return metadataImage.withImage(page.slugs, {
-    title: page.data.title,
-    description: page.data.description,
-  });
+  const description = page.data.description;
+
+  return createMetadata(
+    metadataImage.withImage(page.slugs, {
+      title: page.data.title,
+      description,
+      openGraph: {
+        url: `/${page.slugs.join("/")}`,
+      },
+    })
+  );
+}
+
+export function generateStaticParams(): { slug: string[] }[] {
+  return source.generateParams();
 }
