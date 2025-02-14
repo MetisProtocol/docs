@@ -12,6 +12,7 @@ import Web3Provider from "@/components/rainbowkit/Provider";
 import { ApolloProvider } from "@/components/ApolloProvider";
 import type { MDXComponents } from "mdx/types";
 import { ThirdwebProvider } from "thirdweb/react";
+import { metadataImage } from "@/lib/metadata";
 
 // Define which paths should include the Web3Provider
 const WEB3_ENABLED_PATHS = ["demo"];
@@ -72,8 +73,8 @@ export async function generateMetadata(props: PageProps) {
   const page = source.getPage(slug);
   if (!page) notFound();
 
-  return {
+  return metadataImage.withImage(page.slugs, {
     title: page.data.title,
     description: page.data.description,
-  };
+  });
 }
