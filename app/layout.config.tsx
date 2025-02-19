@@ -42,6 +42,10 @@ export const baseOptions: BaseLayoutProps = {
           text: "Twitter",
           url: "https://x.com/metisdevs",
         },
+        {
+          text: "YouTube",
+          url: "https://www.youtube.com/playlist?list=PLpYi1DzeXBB9dzWw3xk4UMbUHWlRs-i9s",
+        },
       ],
     },
     {

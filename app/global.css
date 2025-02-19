@@ -3,13 +3,25 @@
 @tailwind utilities;
 
 :root {
-  --primary: 191 100% 40%;
-  --secondary: 191 50% 25%;
-  --accent: 198 100% 15%;
-  --neutral: 240 25% 11%;
+  --primary: 190 100% 45%;
+  --secondary: 180 100% 83%;
+  --accent: 190 100% 45%;
+  --neutral: 200 15% 65%;
   --base-100: 0 0% 100%;
-  --info: 199 95.5% 73.9%;
-  --success: 171 76.9% 64.3%;
-  --warning: 50 97.8% 63.5%;
-  --error: 3 100% 79.6%;
+  --info: 199 90% 80%;
+  --success: 160 85% 80%;
+  --warning: 45 95% 80%;
+  --error: 0 90% 80%;
+}
+
+.dark {
+  --primary: 190 100% 45%;
+  --secondary: 187 100% 12%;
+  --accent: 190 100% 35%;
+  --neutral: 200 15% 40%;
+  --base-100: 0 0% 100%;
+  --info: 199 90% 70%;
+  --success: 160 85% 70%;
+  --warning: 45 95% 70%;
+  --error: 0 90% 70%;
 }

@@ -54,8 +54,8 @@ export default async function Page(props: PageProps) {
       toc={page.data.toc}
       full={page.data.full}
       editOnGithub={{
-        repo: "docs",
         owner: "MetisProtocol",
+        repo: "docs",
         sha: "main",
         path,
       }}

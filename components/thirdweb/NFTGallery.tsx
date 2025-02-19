@@ -15,6 +15,7 @@ import {
 import { defineChain, getContract, prepareContractCall } from "thirdweb";
 import { client } from "@/components/thirdweb/Client";
 import { NFT } from "@/lib/const";
+import { toast, ToastContainer } from "react-toastify";
 const NFTGallery = () => {
   const account = useActiveAccount();
   const [sendAddress, setSendAddress] = useState("");
@@ -29,12 +30,14 @@ const NFTGallery = () => {
     data: mintData,
     mutate: mintTx,
     isPending: isPendingMint,
+    isError: isErrorMintTransaction,
   } = useSendTransaction();
 
   const {
     data: transferData,
     mutate: sendTx,
     isPending: isPendingTransfer,
+    isError: isErrorTransferTransaction,
   } = useSendTransaction();
 
   const {
@@ -55,31 +58,50 @@ const NFTGallery = () => {
     variables: { id: account?.address, skip: 0, first: 10 },
   });
 
-  const { isSuccess: isSuccessMint } = useWaitForReceipt({
+  const { isSuccess: isSuccessMint, isError: isErrorMint } = useWaitForReceipt({
     transactionHash: mintData?.transactionHash || "0x0",
     client,
     chain: defineChain(59902),
   });
 
-  const { isSuccess: isSuccessTransfer } = useWaitForReceipt({
-    transactionHash: transferData?.transactionHash || "0x0",
-    client,
-    chain: defineChain(59902),
-  });
+  const { isSuccess: isSuccessTransfer, isError: isErrorTransfer } =
+    useWaitForReceipt({
+      transactionHash: transferData?.transactionHash || "0x0",
+      client,
+      chain: defineChain(59902),
+    });
 
   useEffect(() => {
     if (isSuccessMint) {
       allNFTsRefetch();
       myNFTsRefetch();
+      toast.success("NFT minted successfully");
+    } else if (isErrorMint || isErrorMintTransaction) {
+      toast.error("NFT minting failed");
     }
-  }, [isSuccessMint, allNFTsRefetch, myNFTsRefetch]);
+  }, [
+    isSuccessMint,
+    isErrorMint,
+    isErrorMintTransaction,
+    allNFTsRefetch,
+    myNFTsRefetch,
+  ]);
 
   useEffect(() => {
     if (isSuccessTransfer) {
       allNFTsRefetch();
       myNFTsRefetch();
+      toast.success("NFT transferred successfully");
+    } else if (isErrorTransfer || isErrorTransferTransaction) {
+      toast.error("NFT transfer failed");
     }
-  }, [isSuccessTransfer, allNFTsRefetch, myNFTsRefetch]);
+  }, [
+    isSuccessTransfer,
+    isErrorTransfer,
+    isErrorTransferTransaction,
+    allNFTsRefetch,
+    myNFTsRefetch,
+  ]);
 
   const transfer = (nft: NFT) => {
     const transaction = prepareContractCall({
@@ -136,6 +158,7 @@ const NFTGallery = () => {
           />
         </Tab>
       </Tabs>
+      <ToastContainer />
     </div>
   );
 };

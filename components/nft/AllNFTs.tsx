@@ -21,7 +21,7 @@ export default function AllNFTs({ isLoading, nfts, fetchMore }: AllNFTsProps) {
       <div className="overflow-x-auto">
         <table className="min-w-full table-auto">
           <thead>
-            <tr className="bg-gray-800 text-white">
+            <tr>
               <th className="px-4 py-2">ID</th>
               {nfts && <th className="px-4 py-2">Owner</th>}
             </tr>
@@ -29,17 +29,14 @@ export default function AllNFTs({ isLoading, nfts, fetchMore }: AllNFTsProps) {
           <tbody>
             {nfts?.length > 0 ? (
               nfts.map((nft: NFT, key: number) => (
-                <tr
-                  key={key}
-                  className="bg-gray-900 text-white border-b border-gray-800"
-                >
+                <tr key={key}>
                   <td className="px-4 py-2">{nft.identifier}</td>
                   {nfts && <td className="px-4 py-2">{nft.owner?.id}</td>}
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan={2} className="px-4 py-2 text-center text-gray-500">
+                <td colSpan={2} className="px-4 py-2 text-center">
                   No NFTs found
                 </td>
               </tr>
