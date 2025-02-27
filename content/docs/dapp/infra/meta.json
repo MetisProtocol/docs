@@ -1,4 +1,4 @@
 {
   "title": "Infrastructure",
-  "pages": ["rpcs", "indexers", "oracles", "analytics", "interop", "ai", "aa"]
+  "pages": ["rpcs", "indexers", "oracles", "analytics", "interop", "ai", "aa", "monitoring"]
 }
