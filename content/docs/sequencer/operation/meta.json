@@ -1,4 +1,5 @@
 {
   "title": "Operation",
+  "icon": "ServerCog",
   "pages": ["requirements", "guide", "natspec", "whitelist", "faq"]
 }
