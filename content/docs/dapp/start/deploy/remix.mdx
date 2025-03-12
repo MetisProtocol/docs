@@ -1,0 +1,118 @@
+---
+title: Remix
+description: This tutorial walks through the process of deploying a smart contract on Metis using Remix.
+---
+
+import { Step, Steps } from "fumadocs-ui/components/steps";
+import { Card, Cards } from "fumadocs-ui/components/card";
+
+## Prerequisites
+
+<Cards>
+  <Card title={"Set Up Environment"} href="../environment"></Card>
+</Cards>
+
+<Steps>
+<Step>
+
+### Prepare Your Smart Contract
+
+1. Go to [Remix IDE](https://remix.ethereum.org/)
+2. Create a new file (e.g., `MyContract.sol`)
+3. Paste the smart contract code:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.17;
+
+contract MyToken {
+    string public name = "My Token";
+    string public symbol = "MTK";
+    uint8 public decimals = 18;
+    uint256 public totalSupply = 1000000 * 10**18;
+
+    mapping(address => uint256) public balanceOf;
+    mapping(address => mapping(address => uint256)) public allowance;
+
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+
+    constructor() {
+        balanceOf[msg.sender] = totalSupply;
+    }
+
+    function transfer(address to, uint256 value) public returns (bool) {
+        require(balanceOf[msg.sender] >= value, "Insufficient balance");
+        balanceOf[msg.sender] -= value;
+        balanceOf[to] += value;
+        emit Transfer(msg.sender, to, value);
+        return true;
+    }
+
+    function approve(address spender, uint256 value) public returns (bool) {
+        allowance[msg.sender][spender] = value;
+        emit Approval(msg.sender, spender, value);
+        return true;
+    }
+
+    function transferFrom(address from, address to, uint256 value) public returns (bool) {
+        require(balanceOf[from] >= value, "Insufficient balance");
+        require(allowance[from][msg.sender] >= value, "Not approved");
+        balanceOf[from] -= value;
+        balanceOf[to] += value;
+        allowance[from][msg.sender] -= value;
+        emit Transfer(from, to, value);
+        return true;
+    }
+}
+```
+
+4. Compile your contract by clicking on the "Solidity Compiler" tab and pressing "Compile"
+
+</Step>
+<Step>
+
+### Deploy Using Rabby Wallet
+
+1. In Remix, go to the "Deploy & Run Transactions" tab
+2. Change the environment to "Injected Provider - Rabby" or "Injected Provider - MetaMask" - if you don't see this connection, click "Customize this list..." and add the related plugin
+3. When prompted, connect your Wallet to Remix
+4. Ensure you're on the correct network in your wallet
+5. Select your contract from the dropdown
+6. Click "Deploy"
+7. The Wallet will open a confirmation popup:
+   - Review contract deployment details
+   - Check the gas fee
+   - Confirm the transaction
+
+</Step>
+<Step>
+
+## Verify Your Contract (Optional)
+
+1. After deployment, copy your contract address from Remix
+2. Go to the [Block Explorer](https://sepolia-explorer.metisdevops.link/)
+3. Paste and search the contract address
+4. Navigate to the "Verify Contract" section
+5. Enter your contract address
+6. Upload your source code or paste it directly
+7. Complete verification
+
+</Step>
+<Step>
+
+## Step 4: Interact with Your Contract
+
+1. In Remix, under the "Deployed Contracts" section, you'll see your contract
+2. Expand it to view all available functions
+3. Use the interface to call functions and interact with your contract
+4. For transactions that modify state, your wallet will prompt for confirmation
+
+</Step>
+</Steps>
+
+## Conclusion
+
+You've successfully deployed a smart contract using a Wallet on the Metis Sepolia chain. This same process works for any EVM-compatible blockchain.
+
+Remember to always test your contracts on testnets before deploying to mainnet, and ensure you understand the security implications of your smart contract code.

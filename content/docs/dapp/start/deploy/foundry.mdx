@@ -3,8 +3,15 @@ title: Foundry
 ---
 
 import { Step, Steps } from "fumadocs-ui/components/steps";
+import { Card, Cards } from "fumadocs-ui/components/card";
 
 **Foundry** is a fast and powerful framework for Ethereum development, written in Rust. It’s great for developers who prefer more control and speed in their development workflows.
+
+## Prerequisites
+
+<Cards>
+  <Card title={"Set Up Environment"} href="../environment"></Card>
+</Cards>
 
 <Steps>
 <Step>
@@ -66,7 +73,7 @@ forge build
 Deploy using Foundry:
 
 ```bash
-forge create --rpc-url https://andromeda.metis.io/?owner=1088 src/MyContract.sol:MyContract
+forge create --rpc-url https://sepolia.metisdevops.link src/MyContract.sol:MyContract
 ```
 
 </Step>
