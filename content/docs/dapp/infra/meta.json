@@ -1,4 +1,5 @@
 {
   "title": "Infrastructure",
+  "icon": "Factory",
   "pages": ["rpcs", "indexers", "oracles", "analytics", "interop", "ai", "aa", "monitoring"]
 }
