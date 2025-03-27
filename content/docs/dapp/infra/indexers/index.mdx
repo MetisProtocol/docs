@@ -3,7 +3,7 @@ title: Indexers
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
-import { Database, Boxes, Layers } from "lucide-react";
+import { Network, Database, Boxes, Layers } from "lucide-react";
 
 Indexers, in a broad context, play a fundamental role in organizing and optimizing data retrieval within various systems. These tools act as navigational aids, allowing efficient access to specific information by creating structured indexes. In the realm of databases and information management, indexers enhance query performance by creating a roadmap to swiftly locate data entries.
 
@@ -12,6 +12,7 @@ In the context of blockchain and dApps, indexers go beyond traditional databases
 There are several indexer solutions available, each offering different levels of decentralization, ease of development, and performance for you to consider. These solutions serve as intermediaries to assist in indexing the Metis network.
 
 <Cards className="sm:grid-cols-3">
+  <Card title="the_graph" href="indexers/the_graph" icon={<Network />} />
   <Card title="0xgraph" href="indexers/0xgraph" icon={<Database />} />
   <Card title="Envio" href="indexers/envio" icon={<Boxes />} />
   <Card title="Flair" href="indexers/flair" icon={<Layers />} />
