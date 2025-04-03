@@ -1,0 +1,109 @@
+---
+title: Paymaster
+---
+
+## Introduction
+
+Native Paymaster support is a planned feature for Metis Hyperion that will revolutionize how users interact with decentralized applications. This feature allows users to pay transaction fees using ETH, USDC, USDT, and other tokens, significantly improving Web2-to-Web3 accessibility and adoption.
+
+## Web3 Adoption Barrier
+
+One of the biggest obstacles to mainstream Web3 adoption is the requirement for users to hold specific tokens for transaction fees. Native Paymaster addresses this challenge by:
+
+- Eliminating the need for users to acquire network-specific tokens
+- Allowing applications to sponsor user transactions
+- Enabling seamless onboarding for Web2 users unfamiliar with crypto
+- Supporting flexible payment options similar to traditional applications
+
+## Core Components
+
+### Token Conversion System
+
+The Native Paymaster implements a robust token conversion mechanism:
+
+- **Real-time Rate Discovery**: Accurate token conversion rates using decentralized oracles
+- **Liquidity Pools**: Dedicated liquidity for seamless token swaps
+- **Gas Price Stabilization**: Mechanisms to reduce fee volatility
+- **MEV Protection**: Safeguards against front-running during token conversions
+
+### Transaction Sponsorship
+
+Applications can sponsor user interactions through:
+
+- **Full Sponsorship**: Applications cover all transaction costs
+- **Partial Sponsorship**: Cost-sharing between users and applications
+- **Conditional Sponsorship**: Rules-based fee coverage (e.g., first 10 transactions free)
+- **Subscription Models**: Recurring payment for transaction bundles
+
+### User Experience Flow
+
+From the user perspective, the Native Paymaster creates a streamlined experience:
+
+1. User initiates a transaction in their preferred token
+2. Paymaster validates the transaction and token balance
+3. Behind the scenes, tokens are converted to cover gas fees
+4. Transaction is processed normally on the network
+5. User receives confirmation without handling network tokens
+
+## Technical Implementation
+
+### Smart Contract Architecture
+
+The Paymaster system consists of several interconnected contracts:
+
+```
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│                 │     │                 │     │                 │
+│  EntryPoint     │────▶│  Paymaster      │────▶│  TokenRegistry  │
+│  Contract       │     │  Contract       │     │  Contract       │
+│                 │     │                 │     │                 │
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+                              │
+                              │
+                              ▼
+                        ┌─────────────────┐
+                        │                 │
+                        │  Verification   │
+                        │  Contract       │
+                        │                 │
+                        └─────────────────┘
+```
+
+### Integration with Account Abstraction
+
+Native Paymaster integrates with ERC-4337 Account Abstraction to enable:
+
+- **Gasless Transactions**: Users can transact without holding gas tokens
+- **Batched Operations**: Multiple actions in a single transaction
+- **Signature Schemes**: Support for diverse signing methods
+- **Account Recovery**: Built-in recovery mechanisms
+
+## Best Practices
+
+### For DApp Developers
+
+- **Gradual Adoption**: Start with basic Paymaster integration, then expand
+- **User Education**: Clearly explain payment options to users
+- **Fallback Mechanisms**: Handle scenarios where Paymaster is unavailable
+- **Cost Monitoring**: Track sponsored transaction costs
+- **Token Selection**: Prioritize stable tokens for predictable costs
+
+### For Users
+
+- **Token Approval Management**: Approve only necessary token amounts
+- **Transaction Verification**: Confirm sponsored transaction details
+- **Gas Price Awareness**: Monitor effective gas prices in your tokens
+- **Wallet Compatibility**: Use wallets with Paymaster support
+
+## Conclusion
+
+Native Paymaster support represents a significant step forward in making blockchain technology accessible to mainstream users. By eliminating the need to acquire specific tokens for gas fees and enabling application-sponsored transactions, Metis Hyperion removes a major barrier to Web3 adoption.
+
+The feature will be particularly valuable for:
+
+- **New Web3 Users**: Onboarding without token acquisition
+- **Enterprise Applications**: Abstracting blockchain complexity
+- **Gaming and NFT Platforms**: Enabling gasless interactions
+- **Financial Applications**: Supporting diverse payment options
+
+As Metis Hyperion's roadmap progresses, the Native Paymaster system will evolve to support additional tokens, optimize efficiency, and create new possibilities for user-friendly decentralized applications.
