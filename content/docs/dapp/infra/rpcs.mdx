@@ -3,7 +3,7 @@ title: RPCs
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
-import { Server, Container, Cloud, Zap, Network, Bolt } from "lucide-react";
+import { Server, Container, Cloud, Zap, Network, Bolt, Workflow } from "lucide-react";
 
 |                 | Andromeda (Mainnet)                                                                       | Sepolia (Testnet)                                        |
 | --------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------- |
@@ -37,15 +37,21 @@ All public RPCs are rate limited, in the case you need higher rate limits, there
   <Card
     title="Nodies"
     href="https://www.nodies.app"
-    external
     icon={<Cloud />}
+    external
   />
-  <Card title="BlastAPI" href="https://blastapi.io" external icon={<Zap />} />
-  <Card title="dRPC" href="https://drpc.org" external icon={<Network />} />
+  <Card title="BlastAPI" href="https://blastapi.io" icon={<Zap />} external />
+  <Card title="dRPC" href="https://drpc.org" icon={<Network />} external />
   <Card
     title="Tenderly"
     href="https://tenderly.co/?mtm_campaign=ext-docs&mtm_kwd=metis"
-    external
     icon={<Bolt />}
+    external
+  />
+<Card
+    title="NOWNodes"
+    href="https://nownodes.io/nodes/metis-metis"
+    icon={<Workflow />}
+    external
   />
 </Cards>
