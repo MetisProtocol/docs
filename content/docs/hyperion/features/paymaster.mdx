@@ -47,36 +47,12 @@ From the user perspective, the Native Paymaster creates a streamlined experience
 
 ## Technical Implementation
 
-### Smart Contract Architecture
-
-The Paymaster system consists of several interconnected contracts:
-
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│                 │     │                 │     │                 │
-│  EntryPoint     │────▶│  Paymaster      │────▶│  TokenRegistry  │
-│  Contract       │     │  Contract       │     │  Contract       │
-│                 │     │                 │     │                 │
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-                              │
-                              │
-                              ▼
-                        ┌─────────────────┐
-                        │                 │
-                        │  Verification   │
-                        │  Contract       │
-                        │                 │
-                        └─────────────────┘
-```
-
 ### Integration with Account Abstraction
 
 Native Paymaster integrates with ERC-4337 Account Abstraction to enable:
 
 - **Gasless Transactions**: Users can transact without holding gas tokens
 - **Batched Operations**: Multiple actions in a single transaction
-- **Signature Schemes**: Support for diverse signing methods
-- **Account Recovery**: Built-in recovery mechanisms
 
 ## Best Practices
 
