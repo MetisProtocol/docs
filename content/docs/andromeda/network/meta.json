@@ -1,4 +1,5 @@
 {
   "title": "Misc",
+  "icon": "CircleHelp",
   "pages": ["contracts", "audits", "faq"]
 }
