@@ -12,7 +12,7 @@ export const GET_NFTS_BY_ADDRESS = gql`
 
 export const GET_ALL_NFTS = gql`
   query ($skip: Int!, $first: Int!) {
-    erc721Tokens(orderBy: identifier, skip: $skip, first: $first) {
+    erc721Tokens(orderBy: identifier, orderDirection: desc, skip: $skip, first: $first) {
       identifier
       owner {
         id
