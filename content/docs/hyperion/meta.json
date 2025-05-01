@@ -1,4 +1,4 @@
 {
   "title": "Metis Docs",
-  "pages": ["index", "..."]
+  "pages": ["index", "quick-start", "metis-sdk", "..."]
 }

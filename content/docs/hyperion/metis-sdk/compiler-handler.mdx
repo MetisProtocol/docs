@@ -29,6 +29,31 @@ Imagine you have a book written in a foreign language (EVM bytecode) that you ne
     *   **JIT (Just-in-Time):** Compiles code the first time it's executed and keeps the result in memory for subsequent calls.
 *   **`CompilerHandler`:** This component integrates with the `revm` (the EVM implementation). When the EVM is about to execute a contract, the `CompilerHandler` intercepts this. It checks with the `ExtCompileWorker` if a compiled version of the contract already exists in the cache. If yes, it tells the EVM to run the super-fast native code. If not, it might ask the `ExtCompileWorker` to compile it (either now for JIT, or in the background for AOT) and might fall back to the slower interpreter for the current execution.
 
+```mermaid
+graph TD
+    EVM[EVM starts executing Contract X] --> CH{CompilerHandler Intercepts};
+    CH -- "Got compiled version for X?" --> CW[ExtCompileWorker];
+    CW -- "Check Cache (Memory/Disk)" --> Cache[(Compiled Code Cache)];
+
+    subgraph Cache Hit
+        Cache -- "Yes, here's Native Code N" --> CW;
+        CW -- "Use this Native Code N" --> CH;
+        CH --> RunNative["Run Native Code N (Fast!)"];
+    end
+
+    subgraph Cache Miss
+        Cache -- "No compiled version" --> CW;
+        CW -- "No version available" --> CH;
+        CH -- "Please compile code for X" --> CW;
+        CW -- Compiles --> Compile["Compile Bytecode X -> Native N"];
+        Compile -- Stores --> Cache;
+        
+        CH --> Mode{JIT or AOT?};
+        Mode -- JIT Mode --> RunNativeMiss["Run Native Code N (Fast now!)"];
+        Mode -- AOT Mode --> RunInterpreter["Run Interpreter (Slower this time)"];
+    end
+```
+
 ## How to Use Them (Integration View)
 
 As a user of `metis-sdk`, you typically don't interact with `CompilerHandler` directly during transaction execution. It's an optional feature that gets enabled when setting up the execution environment.

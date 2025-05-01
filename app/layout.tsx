@@ -34,7 +34,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           }}
         >
           <Banner>
-            Metis supports Berlin + PUSH0 of Shanghai (Solidity v0.8.23 and
+            Metis Andromeda supports Berlin + PUSH0 of Shanghai (Solidity v0.8.23 and
             lower)
           </Banner>
 
