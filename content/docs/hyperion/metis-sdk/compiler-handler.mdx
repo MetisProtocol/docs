@@ -2,7 +2,7 @@
 title: CompilerHandler
 ---
 
-Welcome back! In [VmDB](vmdb), we saw how the `VmDB` acts like a smart librarian, making sure the Ethereum Virtual Machine (EVM) reads the correct version of data when transactions run in parallel. It ensures the EVM gets the right information from the shared state managed by [Multi-Version Memory](multi-version-memory).
+In [VmDB](vmdb), we saw how the `VmDB` acts like a smart librarian, making sure the Ethereum Virtual Machine (EVM) reads the correct version of data when transactions run in parallel. It ensures the EVM gets the right information from the shared state managed by [Multi-Version Memory](multi-version-memory).
 
 Now, let's think about the EVM's work itself. The EVM executes instructions written in a special language called "EVM bytecode". This is like a universal instruction set for Ethereum contracts. However, computers don't directly understand EVM bytecode; they understand their own "native machine code". Usually, the EVM acts as an *interpreter*, reading each bytecode instruction one by one and translating it on the spot. This works, but interpretation can be slower than running native code directly.
 

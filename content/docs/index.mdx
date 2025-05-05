@@ -5,27 +5,20 @@ icon: "Landmark"
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
-import { PlayCircle, Code2, Server } from "lucide-react";
+import { Bot, Landmark  } from "lucide-react";
 
 Metis is a next-generation **Layer 2 Ethereum solution**, designed to empower decentralized applications and businesses with **scalability, low-cost transactions**, and a user-centric ecosystem. By leveraging advanced technologies like **Optimistic Rollups** and **Decentralized Sequencers**, Metis aims to overcome the limitations of traditional blockchain networks while maintaining the core ethos of decentralization and security.
 
-<Cards className="sm:grid-cols-3">
+<Cards>
   <Card
-    title="New to Blockchain"
-    href="/dapp/start/demo/rainbowkit"
-    icon={<PlayCircle />}
+    title="Hyperion"
+    href="/hyperion"
+    icon={<Bot />}
   >
-    Start the Interactive Demo
+    Next-Generation Layer 2 for AI & Web3 Applications
   </Card>
-  <Card title="Experienced DApp Dev" href="/dapp/benefits" icon={<Code2 />}>
-    Benefits of Building
-  </Card>
-  <Card
-    title="Node Providers"
-    href="/dapp/infra/rpcs#self-hosted"
-    icon={<Server />}
-  >
-    Network Operation
+  <Card title="Andromeda" href="/andromeda" icon={<Landmark />}>
+    Battle-tested Legacy Chain
   </Card>
 </Cards>
 
@@ -36,17 +29,3 @@ Metis is a next-generation **Layer 2 Ethereum solution**, designed to empower de
 - **Decentralized Sequencing**: Eliminates single points of failure by decentralizing the process of transaction ordering and block production.
 - **Community-Driven Governance**: Encourages collaboration and community-led decision-making.
 - **Cross-Chain Interoperability**: Facilitates seamless asset and data transfer between Ethereum Layer 1 and Metis Layer 2.
-
-## Structure
-
-The entire structure of Metis Layer 2 is designed around several algorithm loops which are designated to mitigate the potential damage and filter the possible malfunctions of decentralized actors and/or other outer ill-wishers.
-
-There are 7 distinguished actors participating in the system (Governance Protocol is a part of L1 / Smart contract, but it handles a number of functions that make it a separate entity):
-
-1. **User** sends the transactions;
-2. **Sequencer Node** is responsible for correcting the blockchain, propagating the blocks through the Peer Network;
-3. **Metis Blockchain** is an entity held by Decentralized Sequencer;
-4. **Verifier** is the counterpart of Sequencer, mostly responsible for keeping an eye on the Sequencer to not provide false/invalid data;
-5. **L1 Smart Contracts** — the set of smart contracts that handle the security of the system, solve the disputes between Sequencer and Verifier;
-6. **Memolabs** stores the transaction data;
-7. **The Governance Protocol** is responsible for anything related to the efficiency of the system.

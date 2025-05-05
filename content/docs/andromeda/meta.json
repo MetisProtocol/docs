@@ -1,0 +1,14 @@
+{
+    "title": "Andromeda",
+    "description": "Battle-tested Legacy Chain",
+    "pages": [
+        "index",
+        "---DApp---",
+        "...dapp",
+        "---Sequencer---",
+        "...sequencer",
+        "---Network---",
+        "...network"
+    ],
+    "root": true
+}
