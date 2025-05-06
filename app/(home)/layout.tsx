@@ -1,7 +1,6 @@
 import "../global.css";
 import "katex/dist/katex.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Inter } from "next/font/google";
 import type { ReactNode } from "react";
 import { DocsLayout } from "fumadocs-ui/layouts/notebook";
 import { baseOptions } from "@/app/layout.config";
@@ -10,10 +9,6 @@ import { Banner } from "fumadocs-ui/components/banner";
 import { AskCookbook } from "@/components/AskCookbook";
 import { baseUrl } from "@/lib/metadata";
 import { createMetadata } from "@/lib/metadata";
-
-const inter = Inter({
-  subsets: ["latin"],
-});
 
 export const metadata = createMetadata({
   title: {
