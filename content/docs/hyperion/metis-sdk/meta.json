@@ -1,0 +1,13 @@
+{
+  "title": "Metis SDK",
+  "icon": "Code",
+  "pages": [
+    "parallel-executor-builder",
+    "parallel-executor",
+    "scheduler",
+    "multi-version-memory",
+    "vmdb",
+    "compiler-handler",
+    "ai-execution-extension"
+  ]
+}

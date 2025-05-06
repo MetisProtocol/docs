@@ -1,4 +1,5 @@
 {
   "title": "Sequencer",
+  "icon": "ServerCog",
   "pages": ["operation", "architecture"]
 }

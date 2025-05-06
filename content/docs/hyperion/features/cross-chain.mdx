@@ -1,0 +1,95 @@
+---
+title: Cross-Chain Interoperability
+---
+
+# Cross-Chain Interoperability & Ethereum Settlement
+
+## Introduction
+
+Metis Hyperion (HYPE) establishes a robust foundation for cross-chain interoperability while maintaining the security guarantees of Ethereum. This documentation covers the cross-chain capabilities, Ethereum settlement processes, and how developers can build applications that leverage this interconnected ecosystem.
+
+## Ethereum Settlement
+
+### Security Model
+
+Metis Hyperion inherits Ethereum's security model through optimistic rollup technology:
+
+- **State Commitments**: Periodic posting of state roots to Ethereum
+- **Fraud Proof Mechanism**: Challenge period for disputing invalid state transitions
+- **Data Availability**: Transaction data is published to Ethereum or dedicated DA layers
+- **Finality Inheritance**: Transactions inherit Ethereum's finality after the challenge period
+
+### Settlement Process
+
+The settlement process follows these key steps:
+
+1. **Block Production**: Sequencers order and process transactions on Metis Hyperion
+2. **State Root Calculation**: A Merkle root of the resulting state is computed
+3. **Commitment Posting**: The state root is periodically posted to Ethereum
+4. **Challenge Period**: A window for fraud proofs (typically 7 days)
+5. **Settlement Finalization**: After the challenge period, state transitions are considered final
+
+### Optimized Settlement
+
+Metis Hyperion implements several optimizations to the traditional settlement process:
+
+- **Batched Commitments**: Multiple blocks are batched into a single Ethereum transaction
+- **Calldata Compression**: Transaction data is compressed to reduce Ethereum gas costs
+- **ZK-Friendly State Encoding**: Preparation for future ZK-based settlement upgrades
+- **Selective Data Publishing**: Only essential data is posted on-chain for verification
+
+## Cross-Chain Communication
+
+### Metis Shared Bridge
+
+The Metis Shared Bridge is a cornerstone of Metis' cross-chain interoperability infrastructure:
+
+- **High-Performance Message Passing**: Enables near-instant communication between Metis-powered chains
+- **Unified Liquidity**: Allows assets to flow efficiently within the Metis ecosystem
+- **Security Guarantees**: Inherits the security model of underlying L1 chains
+- **Standardized Interface**: Common API for cross-chain interactions
+
+The bridge follows a multi-layered architecture:
+
+1. **Application Layer**: Standardized interface for developers
+2. **Protocol Layer**: Handles message formatting and verification
+3. **Transport Layer**: Manages the secure transmission of messages
+4. **Settlement Layer**: Ensures finality across connected chains
+
+### Web3 Universal Liquidity
+
+Metis addresses fragmentation in the Web3 ecosystem through advanced interoperability solutions:
+
+- **Unified Account Abstraction**: Consistent account model across different chains
+- **Cross-Chain Asset Management**: Simplified handling of assets across multiple networks
+- **Streamlined Smart Contract Interactions**: Standardized approach for cross-chain contract calls
+
+### Integration with External Ecosystems
+
+Beyond the Metis ecosystem, Hyperion provides connectivity to:
+
+- **Ethereum Mainnet**: Native integration through the optimistic rollup settlement layer
+- **Other EVM Chains**: Standardized bridges to major EVM-compatible networks
+- **AI and Data Networks**: Specialized bridges for AI model and data interoperability
+- **Restaking Networks**: Future integration with Ethereum's broader restaking ecosystem
+
+### Decentralized Data & Compute Aggregation
+
+Metis Hyperion extends cross-chain capabilities to AI and compute resources:
+
+- **Model Verification**: Cross-chain verification of AI model execution
+- **Data Availability Proofs**: Proving data availability across chains
+- **Compute Resource Sharing**: Enabling distributed computation across networks
+
+## Future Roadmap
+
+The cross-chain interoperability capabilities will expand with:
+
+- **Native Paymaster Support**: Allowing transaction fee payment in various tokens
+- **ZK Bridge Integration**: Enhancing security and reducing latency with ZK proofs
+- **Cross-Chain Governance**: Unified governance across the Metis ecosystem
+- **Cross-Domain MEV Protection**: Extending MEV protection across connected chains
+
+## Conclusion
+
+Metis Hyperion's cross-chain interoperability and Ethereum settlement mechanisms create a fluid Web3 infrastructure that combines high performance with robust security. By leveraging these capabilities, developers can build scalable applications that seamlessly interact across blockchain networks, unifying liquidity and user experience.

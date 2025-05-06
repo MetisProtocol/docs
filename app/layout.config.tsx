@@ -28,6 +28,10 @@ export const baseOptions: BaseLayoutProps = {
           text: "Sepolia",
           url: "https://sepolia-explorer.metisdevops.link",
         },
+        {
+          text: "Hyperion Testnet",
+          url: "https://hyperion-testnet-explorer.metisdevops.link",
+        },
       ],
     },
     {

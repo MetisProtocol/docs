@@ -1,4 +1,3 @@
-// app/[[...slug]]/page.tsx
 import { source } from "@/lib/source";
 import {
   DocsPage,
@@ -6,7 +5,7 @@ import {
   DocsDescription,
   DocsTitle,
 } from "fumadocs-ui/page";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 import Web3Provider from "@/components/rainbowkit/Provider";
 import { ApolloProvider } from "@/components/ApolloProvider";
@@ -31,9 +30,14 @@ const mdxComponents = {
 export default async function Page(props: PageProps) {
   const { slug = [] } = await props.params;
 
+  // Redirect / to /hyperion
+  if (slug.length === 0) {
+    redirect("/hyperion");
+  }
+
   // Check if the current path should have Web3Provider
-  const shouldEnableWeb3 = slug[2] && WEB3_ENABLED_PATHS.includes(slug[2]);
-  const isThirdWeb = slug[3] && THIRDWEB_ENABLED_PATHS.includes(slug[3]);
+  const shouldEnableWeb3 = slug[3] && WEB3_ENABLED_PATHS.includes(slug[3]);
+  const isThirdWeb = slug[4] && THIRDWEB_ENABLED_PATHS.includes(slug[4]);
 
   // Get the page data
   const page = source.getPage(slug);
@@ -58,8 +62,7 @@ export default async function Page(props: PageProps) {
         repo: "docs",
         sha: "main",
         path,
-      }}
-    >
+      }}>
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       {shouldEnableWeb3 ? (

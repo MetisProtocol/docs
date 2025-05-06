@@ -1,0 +1,29 @@
+---
+title: Quick Start
+icon: Atom
+---
+
+Welcome to the Metis SDK! This guide will help you quickly launch a Metis Hyperion node.
+
+
+
+## What is the Metis SDK?
+
+Metis SDK provides a **parallel execution engine** for the [Reth](https://github.com/paradigmxyz/reth) Ethereum node. Instead of processing transactions one by one, it uses multiple CPU cores to execute them concurrently, dramatically speeding up block processing. It manages shared data using a *multi-version memory system* and coordinates tasks with a *scheduler*.
+
+## Prerequisites
+
+- Rust toolchain installed (`rustc`, `cargo`).
+- Familiarity with building and running Rust projects.
+
+## 1. Add Metis SDK to Your Project
+
+Clone or add the Metis SDK source to your workspace. See the [Metis SDK repository](https://github.com/MetisProtocol/metis-sdk) for details.
+
+## 2. Start Your Node
+
+Start your node with the Metis SDK parallel executor:
+
+```bash
+cargo run --bin metis node --dev
+```

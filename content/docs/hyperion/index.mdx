@@ -1,0 +1,53 @@
+---
+title: Overview
+description: Hyperion Developer Documentation
+icon: Bot
+---
+
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { PlayCircle, Code2, Server } from "lucide-react";
+import ConnectHyperionWalletButton from "@/components/ConnectHyperionWalletButton";
+
+## Introduction
+
+Metis Hyperion (HYPE) is a next-generation high-performance Layer 2 network designed to enhance scalability, decentralization, and transaction efficiency in the Web3 ecosystem. Built using the Metis SDK, it offers a modular and adaptable rollup architecture optimized for high-frequency applications, DeFi, gaming, and AI-driven workloads.
+
+|     |Hyperion (Testnet) |
+| --------------------- | ------------------ |
+| Chain ID              | 133717                |
+| Currency Symbol       | htMETIS               |
+| RPC                   | https://hyperion-testnet.metisdevops.link/           |
+| Block Explorer        | https://hyperion-testnet-explorer.metisdevops.link/  |
+| Faucet                | https://hype-faucet.metis.io                         |
+|Add Network| <ConnectHyperionWalletButton />|
+
+## Key Features
+
+- **High-Performance & Decentralized Execution**: Parallel execution, real-time transaction ordering, and optimized sequencing
+- **Decentralized Sequencer Network**: Eliminates single points of failure, ensures fair ordering, and reduces MEV exploitation
+- **Native Infrastructure**: Paymaster support and cross-chain interoperability
+
+## Technical Architecture Overview
+
+Metis Hyperion is built on a layered architecture that combines the strength of Ethereum security with high-performance execution:
+
+1. **Cross-Chain Scalability Layer**: Ensures interoperability across blockchain networks
+2. **Networking & Consensus Layer**: Manages data synchronization and consensus
+3. **High-Performance Execution Layer**: Powers the real-time transaction processing
+4. **Data Services Layer**: Provides efficient storage and state management
+
+## Relationship with Andromeda
+
+While Andromeda remains Metis' established Layer 2 network designed for general-purpose DApps, Metis Hyperion (HYPE) represents the next evolution focused on high-performance execution, decentralized sequencing, and gas fee flexibility. Both networks will coexist within the Metis ecosystem, serving different use cases.
+
+## Key Technical Breakthroughs
+
+Metis Hyperion introduces several groundbreaking technologies:
+
+- **Real-Time Transaction Processing**: Sub-second transaction finality
+- **MetisVM**: High-performance virtual machine with dynamic opcode optimization
+- **Parallel Execution Framework**: Concurrent transaction processing
+- **MetisDB**: Optimized state management system
+- **Decentralized Sequencer Network**: Fair and censorship-resistant transaction ordering
+
+In the following sections, we'll explore each component in depth to help developers understand and build on the Metis Hyperion network.
