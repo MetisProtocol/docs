@@ -26,24 +26,20 @@ export const metadata = createMetadata({
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className={inter.className} suppressHydrationWarning>
-      <body className="flex flex-col min-h-screen">
-        <RootProvider
-          theme={{
-            defaultTheme: "dark",
-          }}
-        >
-          <Banner>
-            Metis Hyperion supports Ethereum Pectra fork
-          </Banner>
+      <RootProvider
+        theme={{
+          defaultTheme: "dark",
+        }}
+      >
+        <Banner>
+          Metis Hyperion supports Ethereum Pectra fork
+        </Banner>
 
-          <DocsLayout tree={source.pageTree} {...baseOptions}>
-            {children}
-          </DocsLayout>
+        <DocsLayout tree={source.pageTree} {...baseOptions}>
+          {children}
+        </DocsLayout>
 
-          <AskCookbook />
-        </RootProvider>
-      </body>
-    </html>
+        <AskCookbook />
+      </RootProvider>
   );
 }
