@@ -8,7 +8,7 @@ const HYPERION_PARAMS = {
   chainName: "Hyperion Testnet",
   nativeCurrency: {
     name: "Hyperion Testnet Metis",
-    symbol: "htMETIS",
+    symbol: "tMETIS",
     decimals: 18,
   },
   rpcUrls: ["https://hyperion-testnet.metisdevops.link/"],
@@ -28,7 +28,9 @@ export const ConnectHyperionWalletButton: React.FC = () => {
     setStatus("");
     try {
       // Request account access
-      await window.ethereum.request({ method: "eth_requestAccounts" });
+      await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
       // Add Hyperion Testnet
       await window.ethereum.request({
         method: "wallet_addEthereumChain",
