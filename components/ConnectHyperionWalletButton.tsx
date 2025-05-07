@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
 import React, { useState } from "react";
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 
 const HYPERION_PARAMS = {
-  chainId: "0x20A05", // 133717 in hex
+  chainId: "0x20A55", // 133717 in hex
   chainName: "Hyperion Testnet",
   nativeCurrency: {
     name: "Hyperion Testnet Metis",
@@ -20,7 +20,9 @@ export const ConnectHyperionWalletButton: React.FC = () => {
 
   const handleClick = async () => {
     if (!window.ethereum) {
-      setStatus("No Web3 wallet found. Please install MetaMask or a compatible wallet.");
+      setStatus(
+        "No Web3 wallet found. Please install MetaMask or a compatible wallet."
+      );
       return;
     }
     setStatus("");
@@ -34,22 +36,24 @@ export const ConnectHyperionWalletButton: React.FC = () => {
       });
       setStatus("Hyperion Testnet added! Switch to it in your wallet.");
     } catch (err: unknown) {
-      if ((err as {code: number, message: string}).code === 4001) {
+      if ((err as { code: number; message: string }).code === 4001) {
         setStatus("User rejected the request.");
       } else {
-        setStatus("Error: " + (err as {message: string}).message);
+        setStatus("Error: " + (err as { message: string }).message);
       }
     }
   };
 
   return (
-    <div>
-      <Button
-        onClick={handleClick}
-      >
+    <div className="text-center">
+      <Button variant="default" onClick={handleClick}>
         Add Hyperion Testnet
       </Button>
-      {status && <div style={{ color: status.startsWith("Error") ? "red" : "#2e7d32" }}>{status}</div>}
+      {status && (
+        <div style={{ color: status.startsWith("Error") ? "red" : "#2e7d32" }}>
+          {status}
+        </div>
+      )}
     </div>
   );
 };

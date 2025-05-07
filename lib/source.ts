@@ -7,12 +7,6 @@ import { createElement } from "react";
 export const source = loader({
   baseUrl: "/",
   source: createMDXSource(docs, meta),
-  baseRoutes: {
-    demo: {
-      path: "demo",
-      pattern: /^demo\//,
-    },
-  },
   icon(icon) {
     if (!icon) {
       // You may set a default icon
