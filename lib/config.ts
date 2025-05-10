@@ -19,6 +19,21 @@ export const metisSepolia = defineChain({
   },
 });
 
+export const hyperionTestnet = defineChain({
+  id: 133717,
+  name: "Hyperion Testnet",
+  nativeCurrency: { name: "tMETIS", symbol: "tMETIS", decimals: 18 },
+  rpcUrls: {
+    default: { http: ["https://hyperion-testnet.metisdevops.link/"] },
+  },
+  blockExplorers: {
+    default: {
+      name: "Hyperion Testnet Explorer",
+      url: "https://hyperion-testnet-explorer.metisdevops.link/",
+    },
+  },
+});
+
 const wagmiConnectors = connectorsForWallets(
   [
     {
@@ -32,7 +47,7 @@ const wagmiConnectors = connectorsForWallets(
   }
 );
 
-export const config = createConfig({
+export const metisSepoliaConfig = createConfig({
   chains: [metisSepolia],
   connectors: wagmiConnectors,
   ssr: true,
@@ -40,4 +55,11 @@ export const config = createConfig({
     [metisSepolia.id]: http(),
   },
   multiInjectedProviderDiscovery: false,
+});
+
+export const hyperionConfig = createConfig({
+  chains: [hyperionTestnet],
+  transports: {
+    [hyperionTestnet.id]: http(),
+  },
 });

@@ -7,17 +7,14 @@ import {
 } from "fumadocs-ui/page";
 import { notFound, redirect } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
-import Web3Provider from "@/components/rainbowkit/Provider";
+import MetisSepoliaProvider from "@/components/rainbowkit/MetisSepoliaProvider";
+import HyperionProvider from "@/components/rainbowkit/HyperionProvider";
 import { ApolloProvider } from "@/components/ApolloProvider";
 import type { MDXComponents } from "mdx/types";
 import { ThirdwebProvider } from "thirdweb/react";
 import { metadataImage } from "@/lib/metadata-image";
 import { createMetadata } from "@/lib/metadata";
 import { Metadata } from "next/types";
-
-// Define which paths should include the Web3Provider
-const WEB3_ENABLED_PATHS = ["demo"];
-const THIRDWEB_ENABLED_PATHS = ["thirdweb"];
 
 interface PageProps {
   params: Promise<{ slug?: string[] }>;
@@ -36,8 +33,9 @@ export default async function Page(props: PageProps) {
   }
 
   // Check if the current path should have Web3Provider
-  const shouldEnableWeb3 = slug[3] && WEB3_ENABLED_PATHS.includes(slug[3]);
-  const isThirdWeb = slug[4] && THIRDWEB_ENABLED_PATHS.includes(slug[4]);
+  const shouldEnableWeb3Hyperion = slug[0] === "hyperion";
+  const shouldEnableWeb3Andromeda = slug[3] === "demo";
+  const isThirdWeb = slug[4] === "thirdweb";
 
   // Get the page data
   const page = source.getPage(slug);
@@ -62,17 +60,20 @@ export default async function Page(props: PageProps) {
         repo: "docs",
         sha: "main",
         path,
-      }}>
+      }}
+    >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
-      {shouldEnableWeb3 ? (
+      {shouldEnableWeb3Andromeda ? (
         <ApolloProvider>
           {isThirdWeb ? (
             <ThirdwebProvider>{Content}</ThirdwebProvider>
           ) : (
-            <Web3Provider>{Content}</Web3Provider>
+            <MetisSepoliaProvider>{Content}</MetisSepoliaProvider>
           )}
         </ApolloProvider>
+      ) : shouldEnableWeb3Hyperion ? (
+        <HyperionProvider>{Content}</HyperionProvider>
       ) : (
         Content
       )}

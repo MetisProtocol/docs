@@ -7,7 +7,7 @@ import { RainbowKitSiweNextAuthProvider } from "@rainbow-me/rainbowkit-siwe-next
 import { RainbowKitProvider } from "@rainbow-me/rainbowkit";
 import { SessionProvider } from "next-auth/react";
 import type { Session } from "next-auth";
-import { config } from "@/lib/config";
+import { metisSepoliaConfig } from "@/lib/config";
 
 const queryClient = new QueryClient();
 
@@ -18,7 +18,7 @@ type Props = {
 
 const Web3Provider = ({ children, session }: Props) => {
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={metisSepoliaConfig}>
       <QueryClientProvider client={queryClient}>
         <SessionProvider session={session}>
           <RainbowKitSiweNextAuthProvider>
