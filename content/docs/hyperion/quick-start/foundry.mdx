@@ -1,0 +1,139 @@
+---
+title: "Foundry Quick Start"
+description: "Deploy a Counter Contract using Foundry"
+---
+
+# Deploying a Counter Contract with Foundry
+
+This guide will walk you through deploying a counter contract using Foundry, a fast and portable toolkit for Ethereum application development.
+
+## Overview
+
+Foundry is a Rust-based toolkit that provides fast compilation and testing capabilities for Ethereum development.
+
+### Key Features
+
+- **Solidity-Native Testing**: Write tests in Solidity for better integration
+- **Fast Compilation**: Optimized compilation process for quick development cycles
+- **Built-in Fuzzing**: Advanced testing capabilities with fuzzing support
+- **Advanced Debugging**: Comprehensive debugging tools for smart contracts
+
+## Setup and Deployment
+
+### 1. Installation
+
+```bash
+curl -L https://foundry.paradigm.xyz | bash
+foundryup
+```
+
+### 2. Project Initialization
+
+```bash
+forge init counter-project
+cd counter-project
+```
+
+### 3. Smart Contract Development
+
+Create a new file `src/Counter.sol`:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Counter {
+    uint256 private count;
+
+    function increment() public {
+        count += 1;
+    }
+
+    function decrement() public {
+        count -= 1;
+    }
+
+    function getCount() public view returns (uint256) {
+        return count;
+    }
+}
+```
+
+### 4. Deployment Configuration
+
+Create `script/Counter.s.sol`:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "forge-std/Script.sol";
+import "../src/Counter.sol";
+
+contract CounterScript is Script {
+    function run() public {
+        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
+        vm.startBroadcast(deployerPrivateKey);
+        Counter counter = new Counter();
+        vm.stopBroadcast();
+    }
+}
+```
+
+### 5. Environment Setup
+
+Create `.env`:
+
+```bash
+PRIVATE_KEY=your_private_key_here
+RPC_URL=your_rpc_url_here
+```
+
+### 6. Deployment
+
+```bash
+forge script script/Counter.s.sol:CounterScript --rpc-url $RPC_URL --broadcast
+```
+
+## Testing
+
+### Test Setup
+
+Create `test/Counter.t.sol`:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "forge-std/Test.sol";
+import "../src/Counter.sol";
+
+contract CounterTest is Test {
+    Counter public counter;
+
+    function setUp() public {
+        counter = new Counter();
+    }
+
+    function testIncrement() public {
+        counter.increment();
+        assertEq(counter.getCount(), 1);
+    }
+}
+```
+
+### Running Tests
+
+```bash
+forge test
+```
+
+## Next Steps
+
+- Add more complex functionality to your counter contract
+- Implement events for better tracking
+- Add access control mechanisms
+- Set up continuous integration
+- Add more comprehensive tests
+
+Remember to always test your contracts thoroughly before deploying to mainnet! 

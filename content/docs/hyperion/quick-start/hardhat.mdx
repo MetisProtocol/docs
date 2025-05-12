@@ -1,0 +1,138 @@
+---
+title: "Hardhat Quick Start"
+description: "Deploy a Counter Contract using Hardhat"
+---
+
+# Deploying a Counter Contract with Hardhat
+
+This guide will walk you through deploying a counter contract using Hardhat, a popular JavaScript-based development environment for Ethereum.
+
+## Overview
+
+Hardhat is a JavaScript-based development environment with extensive plugin ecosystem, making it an excellent choice for Ethereum development.
+
+### Key Features
+
+- **JavaScript/TypeScript Support**: Native support for JavaScript and TypeScript development
+- **Rich Plugin Ecosystem**: Extensive collection of plugins for various development needs
+- **Built-in Testing Framework**: Comprehensive testing capabilities with Chai and Mocha
+- **Developer Experience**: Great for beginners with excellent debugging tools
+
+## Setup and Deployment
+
+### 1. Project Initialization
+
+```bash
+mkdir counter-project
+cd counter-project
+npm init -y
+npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
+npx hardhat init
+```
+
+Choose "Create a JavaScript project" when prompted.
+
+### 2. Smart Contract Development
+
+Create a new file `contracts/Counter.sol`:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract Counter {
+    uint256 private count;
+
+    function increment() public {
+        count += 1;
+    }
+
+    function decrement() public {
+        count -= 1;
+    }
+
+    function getCount() public view returns (uint256) {
+        return count;
+    }
+}
+```
+
+### 3. Deployment Configuration
+
+Create `scripts/deploy.js`:
+
+```javascript
+async function main() {
+  const Counter = await ethers.getContractFactory("Counter");
+  const counter = await Counter.deploy();
+  await counter.deployed();
+  console.log("Counter deployed to:", counter.address);
+}
+
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+```
+
+### 4. Network Configuration
+
+Edit `hardhat.config.js`:
+
+```javascript
+require("@nomicfoundation/hardhat-toolbox");
+
+module.exports = {
+  solidity: "0.8.19",
+  networks: {
+    hardhat: {
+      chainId: 31337
+    }
+  }
+};
+```
+
+### 5. Deployment
+
+```bash
+npx hardhat run scripts/deploy.js --network <your-network>
+```
+
+## Testing
+
+### Test Setup
+
+Create `test/Counter.js`:
+
+```javascript
+const { expect } = require("chai");
+
+describe("Counter", function () {
+  it("Should increment the counter", async function () {
+    const Counter = await ethers.getContractFactory("Counter");
+    const counter = await Counter.deploy();
+    await counter.deployed();
+
+    await counter.increment();
+    expect(await counter.getCount()).to.equal(1);
+  });
+});
+```
+
+### Running Tests
+
+```bash
+npx hardhat test
+```
+
+## Next Steps
+
+- Add more complex functionality to your counter contract
+- Implement events for better tracking
+- Add access control mechanisms
+- Set up continuous integration
+- Add more comprehensive tests
+
+Remember to always test your contracts thoroughly before deploying to mainnet! 
