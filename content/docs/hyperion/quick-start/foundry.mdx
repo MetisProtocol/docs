@@ -45,8 +45,8 @@ forge --version
 Create a new directory for your project and initialize Foundry:
 
 ```bash
-forge init my_foundry_project
-cd my_foundry_project
+forge init Counter
+cd Counter
 ```
 
 This creates a project with the following structure:
@@ -57,9 +57,9 @@ This creates a project with the following structure:
 - `lib/` - for dependencies
 - `foundry.toml` - project configuration file
 
-## 4. Explore the Sample Contract
+## 4. Explore the Counter Contract
 
-Foundry initializes your project with a sample contract in `src/Counter.sol`:
+Foundry initializes your project with a Counter contract in `src/Counter.sol`:
 
 ```solidity
 // SPDX-License-Identifier: UNLICENSED
@@ -100,11 +100,11 @@ forge test
 
 You'll see output indicating which tests passed or failed. The default project includes a sample test for the Counter contract.
 
-## 7. Deploying Your Contract (Optional)
+## 7. Deploying Your Contract 
 
-To deploy your contract to a testnet or mainnet, you'll need:
+To deploy your contract to a Hyperion testnet , you'll need:
 
-- An RPC URL (from a provider like Infura, Alchemy, or QuickNode)
+- An RPC URL
 - A private key with testnet ETH
 
 For Hyperion testnet, use these details:
