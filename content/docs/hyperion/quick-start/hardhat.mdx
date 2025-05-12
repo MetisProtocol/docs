@@ -7,34 +7,57 @@ description: "Deploy a Counter Contract using Hardhat"
 
 This guide will walk you through deploying a counter contract using Hardhat, a popular JavaScript-based development environment for Ethereum.
 
-## Overview
+## 1. Prerequisites
 
-Hardhat is a JavaScript-based development environment with extensive plugin ecosystem, making it an excellent choice for Ethereum development.
+Before you begin, ensure you have:
 
-### Key Features
+- Node.js installed (v12 or later)
+- npm (comes with Node.js)
+- A code editor (e.g., VS Code)
+- (Optional) MetaMask wallet and testnet tokens for deployment
 
-- **JavaScript/TypeScript Support**: Native support for JavaScript and TypeScript development
-- **Rich Plugin Ecosystem**: Extensive collection of plugins for various development needs
-- **Built-in Testing Framework**: Comprehensive testing capabilities with Chai and Mocha
-- **Developer Experience**: Great for beginners with excellent debugging tools
+## 2. Install Hardhat
 
-## Setup and Deployment
-
-### 1. Project Initialization
+Open your terminal and create a new project directory:
 
 ```bash
 mkdir counter-project
 cd counter-project
+```
+
+Initialize a new npm project:
+
+```bash
 npm init -y
-npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
-npx hardhat init
+```
+
+Install Hardhat and required dependencies:
+
+```bash
+npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox dotenv
+```
+```bash
+npm install --save-dev @nomicfoundation/hardhat-ignition```
+
+## 3. Create a New Hardhat Project
+
+Run the Hardhat setup wizard:
+
+```bash
+npx hardhat
 ```
 
 Choose "Create a JavaScript project" when prompted.
 
-### 2. Smart Contract Development
+This will create a project structure like:
+- `contracts/` - for Solidity contracts
+- `igntion/` - for deployment scripts
+- `test/` - for tests
+- `hardhat.config.js` - configuration file
 
-Create a new file `contracts/Counter.sol`:
+## 4. Write Your Smart Contract
+
+Create a new file in the contracts directory, `Counter.sol`:
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -57,48 +80,98 @@ contract Counter {
 }
 ```
 
-### 3. Deployment Configuration
+## 5. Compile the Smart Contract
 
-Create `scripts/deploy.js`:
+Compile your contracts with:
 
-```javascript
-async function main() {
-  const Counter = await ethers.getContractFactory("Counter");
-  const counter = await Counter.deploy();
-  await counter.deployed();
-  console.log("Counter deployed to:", counter.address);
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+```bash
+npx hardhat compile
 ```
 
-### 4. Network Configuration
+You should see a success message if there are no errors.
+
+## 6. Write a Deployment Script
+
+Create a new file in the ignition directory, `Counter.js`:
+
+```javascript
+const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
+
+module.exports = buildModule("CounterModule", (m) => {
+  const counter = m.contract("Counter");
+  
+  return { counter };
+});
+
+
+
+```
+
+## 7. Configure Network Settings
+
+Create a `.env` file in your project root:
+
+```bash
+PRIVATE_KEY=your_private_key_here
+```
 
 Edit `hardhat.config.js`:
 
 ```javascript
 require("@nomicfoundation/hardhat-toolbox");
+require("dotenv").config();
 
 module.exports = {
-  solidity: "0.8.19",
+  solidity: "0.8.28",
   networks: {
     hardhat: {
       chainId: 31337
+    },
+    hyperion: {
+      url: "https://hyperion-testnet.metisdevops.link",
+      chainId: 133717,
+      accounts: [process.env.PRIVATE_KEY]
     }
   }
 };
 ```
 
-### 5. Deployment
+For Hyperion testnet, use these details:
+| Parameter | Value |
+|-----------|-------|
+| Chain ID | 133717 |
+| Currency Symbol | tMETIS |
+| RPC URL | https://hyperion-testnet.metisdevops.link |
+| Block Explorer | https://hyperion-testnet-explorer.metisdevops.link |
+| Faucet | [Telegram Bot](https://t.me/hyperion_testnet_bot), [Website](https://hype-faucet.metis.io) |
+
+## 8. Deploy Your Contract
+
+### Local Deployment (Optional)
+
+Start the Hardhat local node in a separate terminal:
 
 ```bash
-npx hardhat run scripts/deploy.js --network <your-network>
+npx hardhat node
 ```
+
+Deploy to local network:
+
+```bash
+npx hardhat ignition deploy ignition/modules/Counter.js --network  localhost
+```
+
+### Deploy to Hyperion Testnet
+
+Make sure to:
+1. Get testnet tokens from the faucet
+2. Add your private key to the `.env` file
+3. Never share your private key
+
+Deploy to Hyperion:
+
+```bash
+npx hardhat ignition deploy ignition/modules/Counter.js --network hyperion```
 
 ## Testing
 
