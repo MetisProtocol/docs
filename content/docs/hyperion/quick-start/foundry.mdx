@@ -7,125 +7,132 @@ description: "Deploy a Counter Contract using Foundry"
 
 This guide will walk you through deploying a counter contract using Foundry, a fast and portable toolkit for Ethereum application development.
 
-## Overview
+## 1. Prerequisites
 
-Foundry is a Rust-based toolkit that provides fast compilation and testing capabilities for Ethereum development.
+Before you begin, make sure you have:
 
-### Key Features
+- A code editor (e.g., VS Code)
+- Git installed
+- (Optional) MetaMask wallet for deploying to testnets
+- (Optional) RPC endpoint for deploying to a network
 
-- **Solidity-Native Testing**: Write tests in Solidity for better integration
-- **Fast Compilation**: Optimized compilation process for quick development cycles
-- **Built-in Fuzzing**: Advanced testing capabilities with fuzzing support
-- **Advanced Debugging**: Comprehensive debugging tools for smart contracts
+## 2. Install Foundry
 
-## Setup and Deployment
-
-### 1. Installation
+Open your terminal and run:
 
 ```bash
 curl -L https://foundry.paradigm.xyz | bash
+```
+
+This installs foundryup, the Foundry installer.
+
+Next, run:
+
+```bash
 foundryup
 ```
 
-### 2. Project Initialization
+This will install the Foundry toolchain (forge, cast, anvil, chisel).
+
+Check the installation:
 
 ```bash
-forge init counter-project
-cd counter-project
+forge --version
 ```
 
-### 3. Smart Contract Development
+## 3. Initialize a New Project
 
-Create a new file `src/Counter.sol`:
+Create a new directory for your project and initialize Foundry:
+
+```bash
+forge init my_foundry_project
+cd my_foundry_project
+```
+
+This creates a project with the following structure:
+
+- `src/` - for your smart contracts
+- `test/` - for Solidity tests
+- `script/` - for deployment scripts
+- `lib/` - for dependencies
+- `foundry.toml` - project configuration file
+
+## 4. Explore the Sample Contract
+
+Foundry initializes your project with a sample contract in `src/Counter.sol`:
 
 ```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+// SPDX-License-Identifier: UNLICENSED
+pragma solidity ^0.8.13;
 
 contract Counter {
-    uint256 private count;
+    uint256 public number;
+
+    function setNumber(uint256 newNumber) public {
+        number = newNumber;
+    }
 
     function increment() public {
-        count += 1;
-    }
-
-    function decrement() public {
-        count -= 1;
-    }
-
-    function getCount() public view returns (uint256) {
-        return count;
+        number++;
     }
 }
 ```
 
-### 4. Deployment Configuration
+This contract stores a number and allows you to set or increment it.
 
-Create `script/Counter.s.sol`:
+## 5. Compile the Contract
 
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "forge-std/Script.sol";
-import "../src/Counter.sol";
-
-contract CounterScript is Script {
-    function run() public {
-        uint256 deployerPrivateKey = vm.envUint("PRIVATE_KEY");
-        vm.startBroadcast(deployerPrivateKey);
-        Counter counter = new Counter();
-        vm.stopBroadcast();
-    }
-}
-```
-
-### 5. Environment Setup
-
-Create `.env`:
+Compile your smart contracts with:
 
 ```bash
-PRIVATE_KEY=your_private_key_here
-RPC_URL=your_rpc_url_here
+forge build
 ```
 
-### 6. Deployment
+This command compiles all contracts in `src/` and outputs artifacts to the `out/` directory.
 
-```bash
-forge script script/Counter.s.sol:CounterScript --rpc-url $RPC_URL --broadcast
-```
+## 6. Run Tests
 
-## Testing
-
-### Test Setup
-
-Create `test/Counter.t.sol`:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
-
-import "forge-std/Test.sol";
-import "../src/Counter.sol";
-
-contract CounterTest is Test {
-    Counter public counter;
-
-    function setUp() public {
-        counter = new Counter();
-    }
-
-    function testIncrement() public {
-        counter.increment();
-        assertEq(counter.getCount(), 1);
-    }
-}
-```
-
-### Running Tests
+Foundry supports writing tests in Solidity (in the `test/` directory). To run all tests:
 
 ```bash
 forge test
+```
+
+You'll see output indicating which tests passed or failed. The default project includes a sample test for the Counter contract.
+
+## 7. Deploying Your Contract (Optional)
+
+To deploy your contract to a testnet or mainnet, you'll need:
+
+- An RPC URL (from a provider like Infura, Alchemy, or QuickNode)
+- A private key with testnet ETH
+
+For Hyperion testnet, use these details:
+| Parameter | Value |
+|-----------|-------|
+| Chain ID | 133717 |
+| Currency Symbol | tMETIS |
+| RPC URL | https://hyperion-testnet.metisdevops.link |
+| Block Explorer | https://hyperion-testnet-explorer.metisdevops.link |
+| Faucet | [Telegram Bot](https://t.me/hyperion_testnet_bot), [Website](https://hype-faucet.metis.io) |
+
+Example deployment command for Hyperion testnet:
+
+```bash
+forge create --rpc-url https://hyperion-testnet.metisdevops.link \
+  --private-key <YOUR_PRIVATE_KEY> \
+  src/Counter.sol:Counter \
+  --broadcast
+```
+
+Replace `<YOUR_PRIVATE_KEY>` with your actual private key. Never share your private key.
+
+## 8. Interacting with Contracts
+
+You can use cast to interact with deployed contracts, send transactions, or query data. For example, to read the number variable on Hyperion testnet:
+
+```bash
+cast call <CONTRACT_ADDRESS> "number()(uint256)" --rpc-url https://hyperion-testnet.metisdevops.link
 ```
 
 ## Next Steps
