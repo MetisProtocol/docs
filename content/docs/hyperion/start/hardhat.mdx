@@ -1,5 +1,5 @@
 ---
-title: "Hardhat Quick Start"
+title: "Hardhat"
 description: "Deploy a Counter Contract using Hardhat"
 ---
 
@@ -52,6 +52,7 @@ npx hardhat
 Choose "Create a JavaScript project" when prompted.
 
 This will create a project structure like:
+
 - `contracts/` - for Solidity contracts
 - `igntion/` - for deployment scripts
 - `test/` - for tests
@@ -101,12 +102,9 @@ const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
 module.exports = buildModule("CounterModule", (m) => {
   const counter = m.contract("Counter");
-  
+
   return { counter };
 });
-
-
-
 ```
 
 ## 7. Configure Network Settings
@@ -127,14 +125,14 @@ module.exports = {
   solidity: "0.8.28",
   networks: {
     hardhat: {
-      chainId: 31337
+      chainId: 31337,
     },
     hyperion: {
       url: "https://hyperion-testnet.metisdevops.link",
       chainId: 133717,
-      accounts: [process.env.PRIVATE_KEY]
-    }
-  }
+      accounts: [process.env.PRIVATE_KEY],
+    },
+  },
 };
 ```
 
@@ -166,13 +164,14 @@ npx hardhat ignition deploy ignition/modules/Counter.js --network  localhost
 ### Deploy to Hyperion Testnet
 
 Make sure to:
+
 1. Get testnet tokens from the faucet
 2. Add your private key to the `.env` file
 3. Never share your private key
 
 Deploy to Hyperion:
 
-```bash
+````bash
 npx hardhat ignition deploy ignition/modules/Counter.js --network hyperion```
 
 ## Testing
@@ -194,7 +193,7 @@ describe("Counter", function () {
     expect(await counter.getCount()).to.equal(1);
   });
 });
-```
+````
 
 ### Running Tests
 
@@ -209,4 +208,3 @@ npx hardhat test
 - Add access control mechanisms
 - Set up continuous integration
 - Add more comprehensive tests
-
