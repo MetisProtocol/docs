@@ -1,0 +1,61 @@
+---
+title: Test DEX
+description: Learn how to use the Test DEX and its subgraph
+---
+
+## Interacting with the DEX
+
+A Decentralized Exchange (DEX) allows users to swap tokens directly from their wallets, provide liquidity, and earn fees. To use the DEX:
+
+1. **Connect Your Wallet**: Use a wallet like MetaMask or Rabby to connect to the [DEX interface](https://hype-test-dex.metis.io).
+
+2. **Swap Tokens**:
+   - Select the token you want to swap from and the token you want to receive.
+   - Enter the amount and review the estimated output.
+   - Approve the token if required, then confirm the swap.
+3. **Provide Liquidity**:
+   - Go to the "Pool" or "Liquidity" section.
+   - Select the token pair and amounts to deposit.
+   - Approve both tokens if necessary, then supply liquidity.
+   - You will receive LP (Liquidity Provider) tokens representing your share.
+
+## Querying DEX Data with the Subgraph
+
+The subgraph indexes on-chain DEX events and exposes them via a GraphQL API for easy querying.
+
+1. **Access the Subgraph**:
+
+   - Use the subgraph endpoint: [https://subgraph.metis.io/subgraphs/name/hype-test-dex](https://subgraph.metis.io/subgraphs/name/hype-test-dex)
+
+2. **Example Queries**:
+   - **Fetch Recent Swaps**:
+     ```graphql
+     query {
+       swaps(first: 5, orderBy: timestamp, orderDirection: desc) {
+         id
+         sender
+         amount0In
+         amount0Out
+         amount1In
+         amount1Out
+         timestamp
+       }
+     }
+     ```
+   - **Get Liquidity Pool Stats**:
+     ```graphql
+     query {
+       pairs() {
+         id
+         token0 {
+           symbol
+         }
+         token1 {
+           symbol
+         }
+         reserve0
+         reserve1
+         totalSupply
+       }
+     }
+     ```
