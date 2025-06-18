@@ -1,6 +1,6 @@
 {
   "title": "Hyperion",
   "description": "Layer 2 for Next-Generation AI & Web3 Applications",
-  "pages": ["index", "hyperhack", "start", "features", "architecture", "..."],
+  "pages": ["index", "start", "hyperhack", "features", "architecture", "..."],
   "root": true
 }

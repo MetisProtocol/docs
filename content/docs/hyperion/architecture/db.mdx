@@ -62,36 +62,3 @@ MetisDB is tightly integrated with the Metis Parallel Execution Framework:
 2. State access and modifications are tracked through MVCC
 3. Conflict detection and resolution is performed automatically
 4. Valid state changes are committed asynchronously
-
-## Developer Usage Guidelines
-
-### Recommended Practices
-
-When working with MetisDB in your applications:
-
-- Use batch operations for multiple state changes when possible
-- Subscribe to state updates rather than polling for changes
-- Leverage MVCC for concurrent operations
-- Use read-only queries for historical data
-
-## Performance Tuning
-
-MetisDB performance can be optimized with the following configurations:
-
-- **Memory Allocation**: Increase memory allocation for state caching
-- **Snapshot Frequency**: Adjust snapshot intervals based on workload
-- **Pruning Strategy**: Configure state pruning policies for storage efficiency
-- **I/O Optimization**: Tune I/O parameters based on underlying hardware
-
-## Future Development
-
-Upcoming enhancements to MetisDB include:
-
-- Enhanced ZK-friendly Merkle tree support
-- Distributed state storage for horizontal scaling
-- Advanced analytics and indexing capabilities
-- Specialized storage patterns for AI and compute-intensive applications
-
-## Conclusion
-
-MetisDB represents a fundamental advance in blockchain state management, addressing the core challenges of transaction throughput, state synchronization, and historical data efficiency. Its innovative architecture ensures the Metis network can deliver exceptional performance for next-generation decentralized applications.

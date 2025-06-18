@@ -7,29 +7,11 @@ This document provides an in-depth overview of the Metis Hyperion (HYPE) archite
 
 Metis Hyperion is built on a modular architecture with four primary layers, each addressing specific aspects of blockchain scalability, performance, and interoperability:
 
-1. **Cross-Chain Scalability Layer**: Enables seamless interoperability across chains
-2. **Networking & Consensus Layer**: Handles data communication and transaction ordering
-3. **Execution Layer**: Powers high-performance transaction processing
-4. **Data Services Layer**: Provides efficient state management and storage
+1. **Networking & Consensus Layer**: Handles data communication and transaction ordering
+2. **Execution Layer**: Powers high-performance transaction processing
+3. **Data Services Layer**: Provides efficient state management and storage
 
-## 1. Cross-Chain Scalability Layer
-
-The Cross-Chain Scalability Layer facilitates interoperability between Metis Hyperion and other blockchain ecosystems, ensuring seamless asset and data movement.
-
-- **Restaking Integration**: Provides enhanced security through shared security models across Layer X networks.
-
-- **Web3 Universal Liquidity**: Unifies liquidity and message communication across heterogeneous blockchain ecosystems, addressing cross-chain fragmentation.
-
-### Developer Usage
-
-The Cross-Chain Scalability Layer offers developers:
-
-- One-click deployment of Layer 2 or Layer 3 networks
-- Seamless asset transfers with minimal overheads
-- Unified account framework for cross-chain operations
-- Message passing capabilities for cross-chain dApps
-
-## 2. Networking & Consensus Layer
+## 1. Networking & Consensus Layer
 
 The Networking & Consensus Layer manages data communication, transaction ordering, and consensus within the Hyperion network.
 
@@ -57,7 +39,7 @@ The Networking & Consensus Layer manages data communication, transaction orderin
 5. State Commitment: The batch is finalized with a quorum certificate (QC)
 6. Ethereum Settlement: Periodically, state roots are submitted to Ethereum L1
 
-## 3. High-Performance & Infinite Scalability Execution Layer
+## 2. High-Performance & Infinite Scalability Execution Layer
 
 The Execution Layer forms the backbone of Metis Hyperion's high-performance capabilities, enabling real-time transaction processing and parallel execution.
 
@@ -91,7 +73,7 @@ The Execution Layer forms the backbone of Metis Hyperion's high-performance capa
   - Support for ETH, USDC, and USDT payments
   - Web2-style user onboarding
 
-## 4. Data Services Layer
+## 3. Data Services Layer
 
 The Data Services Layer ensures efficient, secure, and scalable data management for the Metis Hyperion network, optimizing storage and retrieval of blockchain state.
 
@@ -125,7 +107,6 @@ Metis Hyperion's layered architecture ensures modular yet integrated operation:
 2. **Ordering**: The Consensus Layer sequences these transactions via the Decentralized Sequencer
 3. **Execution**: The High-Performance Execution Layer processes transactions in parallel
 4. **State Management**: The Data Services Layer efficiently updates and maintains state
-5. **Cross-Chain**: The Cross-Chain Scalability Layer facilitates interaction with other networks
 
 ### Full Transaction Flow
 
@@ -137,7 +118,6 @@ Metis Hyperion's layered architecture ensures modular yet integrated operation:
 6. State is updated in MetisDB with minimal latency
 7. User receives immediate transaction confirmation
 8. Periodically, state commitments are sent to Ethereum L1
-9. Cross-chain actions are relayed through the Shared Bridge
 
 ## Developer Implications
 
