@@ -3,7 +3,16 @@ title: RPCs
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
-import { Server, Container, Cloud, Zap, Network, Bolt, Workflow } from "lucide-react";
+import {
+  Server,
+  Container,
+  Cloud,
+  Zap,
+  Network,
+  Bolt,
+  Workflow,
+  Sparkle,
+} from "lucide-react";
 
 |                 | Andromeda (Mainnet)                                                                       | Sepolia (Testnet)                                        |
 | --------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------- |
@@ -35,12 +44,6 @@ All public RPCs are rate limited, in the case you need higher rate limits, there
 
 <Cards>
   <Card
-    title="Chainstack"
-    href="https://chainstack.com/build-better-with-metis"
-    icon={<Sparkle />}
-    external
-  />
-  <Card
     title="Nodies"
     href="https://www.nodies.app"
     icon={<Cloud />}
@@ -54,10 +57,16 @@ All public RPCs are rate limited, in the case you need higher rate limits, there
     icon={<Bolt />}
     external
   />
-<Card
+  <Card
     title="NOWNodes"
     href="https://nownodes.io/nodes/metis-metis"
     icon={<Workflow />}
+    external
+  />
+  <Card
+    title="Chainstack"
+    href="https://chainstack.com/build-better-with-metis"
+    icon={<Sparkle />}
     external
   />
 </Cards>
