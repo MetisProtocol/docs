@@ -37,7 +37,8 @@
     "tailwindcss-animate": "^1.0.7",
     "thirdweb": "^5.88.3",
     "viem": "^2.23.2",
-    "wagmi": "^2.14.11"
+    "wagmi": "^2.14.11",
+    "ws": ">=8.17.1"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.5",

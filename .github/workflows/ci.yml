@@ -18,5 +18,7 @@ jobs:
           node-version: "22"
       - name: Install dependencies
         run: npm ci
+      - name: Copy env file
+        run: cp example.env .env
       - name: Run build (compilation test)
         run: npm run build
