@@ -30,7 +30,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "next.config.js",
-    "tailwind.config.js"
+    "tailwind.config.js",
+    "content/docs/andromeda/dapp/infra/aa.mdx"
   ],
   "exclude": ["node_modules"]
 }

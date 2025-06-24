@@ -2,17 +2,64 @@
 title: Oracles
 ---
 
-**Oracles** bridge the gap between blockchain systems and the external world, enabling smart contracts to interact with off-chain data sources. By connecting blockchains to external systems, oracles provide the crucial capability for smart contracts to execute based on real-world inputs, such as market prices, weather data, or random number generation.
+**Oracles** are critical infrastructure for blockchain applications, acting as bridges between smart contracts and the outside world. They enable dApps to access real-world data—such as asset prices, weather, sports results, or random numbers—so that contracts can execute logic based on external events. Without oracles, blockchains would be isolated and unable to react to changes beyond their own network.
 
-Metis is integrated with leading Oracle providers to ensure developers have reliable and secure access to external data.
+Oracles are widely used in DeFi (for price feeds and liquidations), insurance (for weather or event triggers), gaming (for randomness), and many other use cases.
 
-## Supported Oracle Providers
+## Why Oracles Matter
 
-Metis partners with several Oracle providers, each bringing unique strengths and capabilities to the platform. These providers integrate seamlessly with the Metis Layer 2 ecosystem:
+- **Automation:** Enable smart contracts to respond to real-world events
+- **DeFi:** Secure price feeds are essential for lending, trading, and derivatives
+- **Randomness:** Fair gaming, lotteries, and NFT reveals require verifiable randomness
+- **Custom Data:** Access APIs for weather, sports, IoT, and more
 
-| Name                            | Type                                                                                                                                         |                                                                                                   |
-| ------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [Chainlink](https://chain.link) | [Price Feed](https://docs.chain.link/data-feeds/price-feeds/addresses?network=metis)                                                         |
-| [API3](https://api3.org)        | [Price Feed](https://market-catalog.api3.org/?chain=metis)                                                                                   | [Example](https://github.com/metis-edu/Community-contributions/tree/main/API3/api3-dapi-workshop) |
-| [DIA](https://diadata.org)      | [Price Feed](https://docs.diadata.org/use-nexus-product/readme/token-price-feeds/access-the-oracle)                                          |
-| [Witnet](https://witnet.io)     | [Price Feed](https://docs.witnet.io/smart-contracts/supported-chains), [Randomness](https://docs.witnet.io/smart-contracts/supported-chains) |
+## Types of Oracles
+
+- **Price Feeds:** Deliver up-to-date asset prices (e.g., ETH/USD)
+- **Data Feeds:** Provide other off-chain data (e.g., weather, sports, news)
+- **Randomness Oracles:** Supply verifiable random numbers
+- **Custom/API Oracles:** Fetch data from any external API
+
+## How Oracles Work
+
+Oracles can be implemented in different ways:
+
+- **On-chain vs. Off-chain:** Some oracles run as smart contracts, others as off-chain services that push data on-chain.
+- **Push vs. Pull:** Data can be pushed to the blockchain at regular intervals, or pulled by contracts on demand.
+- **Aggregation:** Leading oracles aggregate data from multiple sources to reduce manipulation risk.
+- **Security:** Decentralized oracles use multiple nodes, cryptographic proofs, and monitoring to ensure data integrity and reliability.
+
+## Supported Oracle Providers on Metis
+
+Metis partners with several leading oracle providers, each offering unique features:
+
+| Name                             | Type                                                                                                                                         |                                                                                                   |
+| -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [Chainlink](https://chain.link)  | [Price Feed](https://docs.chain.link/data-feeds/price-feeds/addresses?network=metis)                                                         |                                                                                                   |
+| [API3](https://api3.org)         | [Price Feed](https://market-catalog.api3.org/?chain=metis)                                                                                   | [Example](https://github.com/metis-edu/Community-contributions/tree/main/API3/api3-dapi-workshop) |
+| [DIA](https://diadata.org)       | [Price Feed](https://docs.diadata.org/use-nexus-product/readme/token-price-feeds/access-the-oracle)                                          |                                                                                                   |
+| [Witnet](https://witnet.io)      | [Price Feed](https://docs.witnet.io/smart-contracts/supported-chains), [Randomness](https://docs.witnet.io/smart-contracts/supported-chains) |                                                                                                   |
+| [Gelato](https://gelato.network) | [Randomness](https://docs.gelato.cloud/web3-services/vrf)                                                                                    | [Example](https://docs.gelato.cloud/web3-services/vrf/quick-start)                                |
+
+### Provider Overviews
+
+- **Chainlink:** The most widely used decentralized oracle network. Aggregates data from many sources and nodes, providing highly secure and reliable price feeds. Also supports VRF (verifiable randomness) and custom data feeds.
+- **API3:** Decentralized APIs (dAPIs) with first-party oracles operated by data providers themselves. Supports price feeds and custom data, with transparent governance and on-chain insurance.
+- **DIA:** Open-source oracles focused on transparency and customization. Data is sourced from both on-chain and off-chain sources, with flexible feed creation.
+- **Witnet:** Decentralized oracle network specialized in both price feeds and randomness. Provides verifiable randomness for gaming and NFTs, as well as secure data feeds.
+- **Gelato:** Provides verifiable randomness using VRFs (Verifiable Random Functions).
+
+## Best Practices for Using Oracles
+
+- **Use Multiple Oracles:** For critical applications, aggregate data from more than one provider to reduce risk.
+- **Monitor Feeds:** Set up alerts for stale or abnormal data.
+- **Validate Data:** Check timestamps, values, and source signatures.
+- **Plan for Fallbacks:** Have backup feeds or manual intervention for outages.
+- **Stay Updated:** Monitor provider documentation for new feeds and breaking changes.
+
+## How to Get Started
+
+1. **Choose a Provider:** Review the available oracles and select the one that fits your data and security needs.
+2. **Integrate the Feed:** Use the provider's documentation to read data from the oracle contract in your smart contract.
+3. **Test Thoroughly:** Simulate edge cases (stale data, outages, extreme values) in your testnet deployments.
+4. **Monitor in Production:** Set up monitoring for data freshness and anomalies.

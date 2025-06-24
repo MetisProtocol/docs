@@ -5,7 +5,17 @@ title: Analytics
 import { Card, Cards } from "fumadocs-ui/components/card";
 import { LineChart, Search, PieChart } from "lucide-react";
 
-Data and analytics are essential for tracking your project's growth.
+Data and analytics are essential for tracking your project's growth, understanding user behavior, and making data-driven decisions. For dApps on Andromeda/Metis, leveraging analytics can help you:
+
+- Monitor on-chain activity (transactions, TVL, user growth)
+- Track protocol health and adoption
+- Identify trends and optimize features
+- Demonstrate traction to the community and investors
+
+## Types of Analytics
+
+- **On-chain Analytics:** Track blockchain metrics such as transaction volume, active addresses, TVL, and contract interactions.
+- **Custom/Event Analytics:** Instrument your dApp to log custom events (e.g., swaps, mints, votes) for deeper insights.
 
 ## Providers
 
@@ -29,3 +39,29 @@ Data and analytics are essential for tracking your project's growth.
     icon={<PieChart />}
   />
 </Cards>
+
+### Provider Overviews
+
+- **DefiLlama:**
+  - Track total value locked (TVL), protocol rankings, and DeFi metrics for Metis.
+  - Great for DeFi projects and ecosystem overviews.
+- **Routescan Explorer:**
+  - Explore on-chain data, transaction charts, and contract analytics.
+  - Useful for tracking network activity and smart contract usage.
+- **GrowThePie:**
+  - Visualizes ecosystem growth, user retention, and protocol comparisons.
+  - Good for understanding broader trends and user flows.
+
+## Best Practices for dApp Analytics
+
+- **Define Key Metrics:** Decide what matters (e.g., DAUs, TVL, retention, conversion rates).
+- **Automate Data Collection:** Use APIs or event logging to gather data in real time.
+- **Visualize Results:** Build dashboards or use provider tools to share insights with your team/community.
+- **Respect Privacy:** Be transparent about data collection and comply with relevant regulations.
+
+## How to Get Started
+
+1. **Pick a Provider:** Start with DefiLlama or Routescan for high-level metrics.
+2. **Integrate Analytics:** For custom tracking, consider event logging in your dApp frontend/backend.
+3. **Explore APIs:** Most providers offer APIs for programmatic access to data.
+4. **Build Dashboards:** Use Grafana to build dashboards for your dApp.

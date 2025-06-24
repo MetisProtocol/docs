@@ -19,11 +19,11 @@ export const baseOptions: BaseLayoutProps = {
       text: "Explorers",
       items: [
         {
-          text: "Andromeda",
+          text: "Andromeda Mainnet",
           url: "https://explorer.metis.io",
         },
         {
-          text: "Sepolia",
+          text: "Sepolia Testnet",
           url: "https://sepolia-explorer.metisdevops.link",
         },
         {
@@ -64,5 +64,6 @@ export const baseOptions: BaseLayoutProps = {
         },
       ],
     },
+    { type: "main", text: "Status", url: "https://status.metis.io" },
   ],
 };

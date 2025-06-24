@@ -3,9 +3,9 @@
 @import "fumadocs-ui/css/preset.css";
 
 :root {
-  --color-fd-primary: hsl(190, 100%, 44%);
-  --color-fd-secondary: hsl(180, 44%, 74%);
-  --color-fd-accent: hsl(191, 51%, 87%);
+  --color-fd-primary: hsl(190, 100%, 35%);
+  --color-fd-secondary: hsl(180, 50%, 75%);
+  --color-fd-accent: hsl(190, 50%, 90%);
   --color-fd-neutral: hsl(200 15% 65%);
   --color-fd-base-100: hsl(0 0% 100%);
   --color-fd-info: hsl(199 90% 80%);
@@ -16,18 +16,14 @@
 
 .dark {
   --color-fd-primary: hsl(190 100% 45%);
-  --color-fd-secondary: hsl(187 100% 12%);
-  --color-fd-accent: hsl(190 100% 35%);
+  --color-fd-secondary: hsl(180, 50%, 20%);
+  --color-fd-accent: hsl(190, 50%, 15%);
   --color-fd-neutral: hsl(200 15% 40%);
   --color-fd-base-100: hsl(0 0% 100%);
   --color-fd-info: hsl(199 90% 70%);
   --color-fd-success: hsl(160 85% 70%);
   --color-fd-warning: hsl(45 95% 70%);
   --color-fd-error: hsl(0 90% 70%);
-}
-
-.text-start p:last-child {
-  color: var(--color-fd-popover-foreground);
 }
 
 @layer base {

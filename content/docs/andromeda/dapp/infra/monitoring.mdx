@@ -3,9 +3,16 @@ title: Monitoring
 ---
 
 import { Card, Cards } from "fumadocs-ui/components/card";
-import { LineChart, Search, PieChart } from "lucide-react";
+import { TriangleAlert, Clapperboard } from "lucide-react";
 
-Monitoring tools are essential for keeping track of interactions and transactions on your dApp.
+Monitoring is critical for maintaining the reliability, security, and performance of your dApp. Effective monitoring allows you to detect issues early, respond to incidents quickly, and ensure a seamless experience for your users. It also helps with compliance and auditing, which are increasingly important in the blockchain space.
+
+## Types of Monitoring
+
+- **Transaction Monitoring:** Track on-chain transactions, failed/successful calls, and gas usage.
+- **Smart Contract Monitoring:** Watch for specific contract events, anomalies, or upgrades.
+- **Infrastructure Monitoring:** Ensure your RPC nodes, APIs, and backend services are healthy and performant.
+- **User Activity Monitoring:** Analyze user flows, wallet connections, and interaction patterns.
 
 ## Providers
 
@@ -14,12 +21,33 @@ Monitoring tools are essential for keeping track of interactions and transaction
     title="Tenderly Alerts"
     href="https://docs.tenderly.co/alerts/intro-to-alerts?mtm_campaign=ext-docs&mtm_kwd=metis"
     external
-    icon={<LineChart />}
+    icon={<TriangleAlert />}
   />
   <Card
     title="Tenderly Web3 Actions"
     href="https://docs.tenderly.co/web3-actions/intro-to-web3-actions?mtm_campaign=ext-docs&mtm_kwd=metis"
     external
-    icon={<LineChart />}
+    icon={<Clapperboard />}
   />
 </Cards>
+
+### Provider Overviews
+
+- **Tenderly Alerts:** Real-time notifications for on-chain events, errors, and custom triggers. Integrates with Slack, email, and webhooks.
+- **Tenderly Web3 Actions:** Automated workflows that react to blockchain events, enabling auto-responses and integrations.
+
+## Best Practices for dApp Monitoring
+
+- **Set Up Alerts:** Define thresholds and triggers for critical events (e.g., contract upgrades, large transfers, failed transactions).
+- **Automate Incident Response:** Use Web3 Actions or Defender Autotasks to automate responses to incidents.
+- **Visualize Metrics:** Build dashboards (e.g., with Grafana or Tenderly) for real-time and historical monitoring.
+- **Log Everything:** Maintain logs for all critical actions and events for auditing and debugging.
+- **Test Regularly:** Simulate incidents to ensure your monitoring and alerting are functioning as expected.
+
+## How to Get Started
+
+1. **Choose Monitoring Tools:** Start with Tenderly for smart contract monitoring.
+2. **Integrate Alerts:** Connect to Slack, email, or other channels for real-time notifications.
+3. **Automate Actions:** Use Web3 Actions, Defender Autotasks, or custom scripts to automate responses.
+4. **Build Dashboards:** Visualize key metrics and events for your team.
+5. **Review and Iterate:** Regularly review your monitoring setup and improve based on new risks or requirements.

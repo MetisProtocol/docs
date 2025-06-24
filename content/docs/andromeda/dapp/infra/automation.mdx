@@ -1,0 +1,35 @@
+---
+title: Automation
+---
+
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { Parentheses } from "lucide-react";
+
+Blockchain automation services enable smart contracts to execute functions automatically without requiring manual intervention. These services solve a fundamental limitation of blockchain networks: smart contracts can only execute when triggered by an external transaction, but many applications need functions to run automatically based on time intervals or specific conditions.
+
+## Providers
+
+<Cards>
+  <Card
+    title="Gelato Functions"
+    href="https://docs.gelato.cloud/web3-services/web3-functions/create-a-web3-function-task"
+    external
+    icon={<Parentheses />}
+  >
+    Gelato provides a more flexible automation framework where developers can
+    create custom execution logic using JavaScript-like functions.
+  </Card>
+</Cards>
+
+## How They Work
+
+These automation networks operate through decentralized networks of nodes that monitor smart contracts and execute predefined functions when certain conditions are met. The process typically involves:
+
+1. **Job Registration**: Developers register their smart contracts with the automation service, specifying trigger conditions and the functions to execute
+2. **Monitoring**: Nodes continuously monitor registered contracts for trigger conditions
+3. **Execution**: When conditions are met, nodes submit transactions to execute the specified functions
+4. **Compensation**: Node operators receive payment in network tokens for their services
+
+## Common Use Cases
+
+Automation enable applications like automated yield harvesting in DeFi protocols, dynamic NFT updates, insurance claim processing, subscription payments, liquidations in lending protocols, and gaming mechanics that require regular state updates. They're essential infrastructure for creating autonomous, self-executing blockchain applications that don't require constant manual oversight.

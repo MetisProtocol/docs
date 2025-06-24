@@ -28,7 +28,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             defaultTheme: "dark",
           }}
         >
-          <Banner>Metis Hyperion supports Ethereum Pectra fork</Banner>
+          <Banner>Metis Hyperion supports the Ethereum Pectra fork</Banner>
           {children}
           <AskCookbook />
         </RootProvider>

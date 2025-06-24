@@ -1,0 +1,75 @@
+---
+title: "Account Abstraction"
+---
+
+import { Card, Cards } from "fumadocs-ui/components/card";
+import { SeparatorVertical, Scan, Shield } from "lucide-react";
+
+Account abstraction (AA) is a paradigm shift in blockchain user experience and security. Instead of relying on externally owned accounts (EOAs) with private keys, AA enables smart contract wallets to act as user accounts. This unlocks advanced functionality, such as:
+
+- Gasless transactions (sponsored by dApps or third parties)
+- Social recovery and multi-signature security
+- Session keys and programmable permissions
+- Batched transactions and automation
+
+With AA, users can interact with dApps seamlessly, even if they don't hold native tokens, and developers can build more secure and flexible onboarding flows.
+
+## How Account Abstraction Works
+
+Account abstraction is typically implemented using smart contract wallets that conform to standards like ERC-4337. Key components include:
+
+- **Smart Contract Wallets:** User accounts implemented as contracts (e.g., Safe, ZeroDev, Biconomy, Thirdweb)
+- **Bundlers:** Aggregate and submit user operations to the network
+- **Paymasters:** Sponsor transaction fees, enabling gasless UX
+- **Gelato Functions:** On Metis, Gelato provides automation and secure execution for AA operations
+
+## Benefits for dApps and Users
+
+- **Enhanced Security:** Social recovery, multi-sig, and custom logic protect users from key loss or theft
+- **Better UX:** Gasless onboarding, batched actions, and flexible permissions
+- **Programmability:** Developers can define custom rules for account management and transaction approval
+
+## Account Abstraction on Metis
+
+Metis supports AA via Gelato Functions and compatible wallet providers. This enables:
+
+- Gasless transactions and fee abstraction
+- Automated contract execution and relaying
+- Integration with leading AA SDKs and APIs
+
+## Providers
+
+<Cards className="sm:grid-cols-3">
+  <Card
+    title="Thirdweb"
+    href="https://portal.thirdweb.com/connect/account-abstraction/overview"
+    external
+    icon={<Scan />}
+  />
+  <Card
+    title="Gelato"
+    href="https://docs.gelato.network/automate/erc4337"
+    external
+    icon={<SeparatorVertical />}
+  />
+  <Card
+    title="Metis Safe"
+    href="https://metissafe.tech"
+    external
+    icon={<Shield />}
+  />
+</Cards>
+
+## Best Practices for Integrating AA
+
+- Use audited smart contract wallet implementations (e.g. Thirdweb, Gelato, Metis Safe)
+- Clearly communicate security features (e.g., recovery, multi-sig) to users
+- Test gasless flows and fallback mechanisms
+- Monitor for compatibility with wallets and dApp browsers
+
+## How to Get Started
+
+1. **Choose a Provider:** Select a smart contract wallet or SDK (e.g., Thirdweb, Gelato, Metis Safe)
+2. **Integrate SDK:** Follow provider docs to add AA wallet support to your dApp
+3. **Enable Gasless Transactions:** Set up a paymaster or relayer (e.g., via Gelato)
+4. **Test User Flows:** Ensure onboarding, recovery, and transaction signing are seamless

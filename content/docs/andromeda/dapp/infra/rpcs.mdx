@@ -14,6 +14,10 @@ import {
   Sparkle,
 } from "lucide-react";
 
+## What Are RPCs?
+
+**Remote Procedure Call (RPC) endpoints** are the backbone of blockchain connectivity. They allow wallets, dApps, indexers, and backend services to communicate with the Metis network—sending transactions, reading on-chain data, and subscribing to events. Every interaction with the blockchain (outside of running your own node) relies on RPC endpoints.
+
 |                 | Andromeda (Mainnet)                                                                       | Sepolia (Testnet)                                        |
 | --------------- | ----------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | RPCs            | https://chainlist.org/chain/1088                                                          | https://chainlist.org/chain/59902                        |
@@ -21,7 +25,28 @@ import {
 | Currency Symbol | METIS                                                                                     | sMETIS                                                   |
 | Block Explorer  | [Routescan](https://explorer.metis.io), [Blockscout](https://andromeda-explorer.metis.io) | [Blockscout](https://sepolia-explorer.metisdevops.link/) |
 
-All public RPCs are rate limited, in the case you need higher rate limits, there are two options:
+## Types of RPC Endpoints
+
+- **Public RPCs:** Free and easy to use, but subject to rate limits and congestion. Best for development, testing, and light usage.
+- **Private RPC Providers:** Offer higher throughput, reliability, and support. Ideal for production dApps, bots, and high-traffic services.
+- **Self-Hosted Nodes:** Maximum control, privacy, and reliability. Recommended for enterprise, indexers, or when handling sensitive data.
+
+## Common Use Cases
+
+- **Frontend dApps:** Connect wallets and user interfaces to the Metis blockchain.
+- **Backend Services:** Power bots, relayers, analytics, and automation.
+- **Indexers & Analytics:** Aggregate and process on-chain data at scale.
+- **Monitoring:** Track contract events, network health, and infrastructure status.
+
+## Key Considerations
+
+- **Rate Limits:** Public endpoints may throttle requests. Use private or self-hosted solutions for higher limits.
+- **Latency:** Choose geographically close endpoints to reduce response times.
+- **Reliability:** Monitor for downtime and have fallback endpoints.
+- **Security:** Never expose private keys to RPC endpoints you don't control. Use HTTPS and restrict access as needed.
+- **Compatibility:** Ensure the endpoint supports all required methods (e.g., websockets for subscriptions).
+
+All public RPCs are rate limited. If you need higher rate limits, consider the following options:
 
 ## Self-Hosted
 
@@ -70,3 +95,43 @@ All public RPCs are rate limited, in the case you need higher rate limits, there
     external
   />
 </Cards>
+
+## Best Practices for Using RPCs
+
+- **Use Multiple Endpoints:** Implement fallback logic to switch endpoints if one fails.
+- **Monitor Health:** Regularly check latency and uptime of your RPC providers.
+- **Cache Responses:** For frequently-read data, cache results to reduce load and latency.
+- **Secure Sensitive Operations:** Only sign transactions on endpoints you trust or control.
+- **Stay Updated:** Watch for network upgrades or endpoint deprecations from your provider.
+
+## How to Get Started
+
+1. **Choose an Endpoint:** Use public endpoints for development, private or self-hosted for production.
+2. **Integrate in Your dApp:** Configure your web3 provider (ethers.js, web3.js, etc.) with the RPC URL.
+3. **Test Thoroughly:** Simulate high load and failover scenarios in staging.
+4. **Monitor and Iterate:** Continuously monitor performance and update endpoints as needed.
+
+## Example: Switching RPC Endpoints in ethers.js
+
+```js
+import { ethers } from "ethers";
+
+const endpoints = [
+  "https://andromeda.metis.io/?owner=1088",
+  "https://metis-mainnet.public.blastapi.io",
+  // Add more as needed
+];
+
+let provider;
+for (const url of endpoints) {
+  try {
+    provider = new ethers.JsonRpcProvider(url);
+    await provider.getBlockNumber(); // Test connectivity
+    break;
+  } catch (e) {
+    // Try next endpoint
+  }
+}
+
+if (!provider) throw new Error("No healthy RPC endpoints available");
+```
