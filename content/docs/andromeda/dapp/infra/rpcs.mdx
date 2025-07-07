@@ -12,6 +12,7 @@ import {
   Bolt,
   Workflow,
   Sparkle,
+  Leaf,
 } from "lucide-react";
 
 ## What Are RPCs?
@@ -68,18 +69,24 @@ All public RPCs are rate limited. If you need higher rate limits, consider the f
 ## Private RPC Providers
 
 <Cards>
+  <Card title="BlastAPI" href="https://blastapi.io" icon={<Zap />} external />
+  <Card
+    title="Chainstack"
+    href="https://chainstack.com/build-better-with-metis"
+    icon={<Sparkle />}
+    external
+  />
+  <Card title="dRPC" href="https://drpc.org" icon={<Network />} external />
+  <Card
+    title="Grove"
+    href="https://grove.city"
+    icon={<Leaf />}
+    external
+  />  
   <Card
     title="Nodies"
     href="https://www.nodies.app"
     icon={<Cloud />}
-    external
-  />
-  <Card title="BlastAPI" href="https://blastapi.io" icon={<Zap />} external />
-  <Card title="dRPC" href="https://drpc.org" icon={<Network />} external />
-  <Card
-    title="Tenderly"
-    href="https://tenderly.co/?mtm_campaign=ext-docs&mtm_kwd=metis"
-    icon={<Bolt />}
     external
   />
   <Card
@@ -89,11 +96,12 @@ All public RPCs are rate limited. If you need higher rate limits, consider the f
     external
   />
   <Card
-    title="Chainstack"
-    href="https://chainstack.com/build-better-with-metis"
-    icon={<Sparkle />}
+    title="Tenderly"
+    href="https://tenderly.co/?mtm_campaign=ext-docs&mtm_kwd=metis"
+    icon={<Bolt />}
     external
   />
+
 </Cards>
 
 ## Best Practices for Using RPCs
