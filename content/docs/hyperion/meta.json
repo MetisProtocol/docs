@@ -1,6 +1,6 @@
 {
   "title": "Hyperion",
   "description": "Layer 2 for the next generation of AI DApps",
-  "pages": ["index", "start", "hyperhack", "features", "architecture", "..."],
+  "pages": ["index", "start", "hyperhack", "lazai", "architecture", "..."],
   "root": true
 }

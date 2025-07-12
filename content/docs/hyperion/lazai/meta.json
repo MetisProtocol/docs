@@ -1,4 +1,5 @@
 {
   "title": "LazAI",
-  "pages": ["index", "client", "inference", "proof", "tee"]
+  "icon": "Computer",
+  "pages": ["client", "inference", "proof", "tee", "node"]
 }

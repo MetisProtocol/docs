@@ -9,9 +9,9 @@ In the previous section, we learned how to be a _consumer_ in the LazAI economy,
 Think of contributing data to the LazAI network like submitting a scientific paper to a prestigious journal for peer review. You don't just email your paper to a random person; you follow a structured, verifiable process to build trust.
 
 1.  **Write the Paper (Prepare Your Data):** You prepare your dataset. For sensitive information, you might encrypt it to protect privacy.
-2.  **Submit to a Journal (Publish its Location):** You upload your data to a public storage system (like IPFS) and then register its _location_ on the LazAI blockchain. You are not putting the data itself on the chain, just a pointer to it.
+2.  **Submit to a Journal (Publish its Location):** You upload your data to a public storage system (like IPFS) and then register its _location_ on LazChain. You are not putting the data itself on the chain, just a pointer to it.
 3.  **Request Peer Review (Request a Proof):** You ask the network for a "proof," which is like asking the journal to send your paper to expert reviewers. A network "node" (a reviewer) is assigned to verify your data.
-4.  **Get Published (Receive a Proof):** The node examines your data and, if it meets the criteria, submits a "proof" to the blockchain. This is like your paper being officially accepted and published. Your data is now trusted.
+4.  **Get Published (Receive a Proof):** The node examines your data and, if it meets the criteria, submits a "proof" to LazChain. This is like your paper being officially accepted and published. Your data is now trusted.
 5.  **Earn Citations (Get Rewarded):** With your data proven and trusted, others can use it, and you can earn rewards for your valuable contribution.
 
 Our goal is to walk through this entire "peer review" process to contribute a piece of data to the LazAI network.
@@ -47,7 +47,7 @@ Now our `encrypted_data` is a bundle of scrambled text that is safe to share pub
 
 Next, we need to upload our `encrypted_data` to a public storage service like IPFS (InterPlanetary File System). After uploading, we get a unique URL.
 
-Then, we use our LazAI Client to register this URL on the LazAI blockchain. This creates a permanent, public record pointing to our data.
+Then, we use our LazAI Client to register this URL on LazChain. This creates a permanent, public record pointing to our data.
 
 ```python
 from alith.lazai import Client
@@ -58,7 +58,7 @@ client = Client()
 # (This is just a placeholder)
 url = "ipfs://QmXo9bb4cZJ..."
 
-# Register the URL on the LazAI blockchain
+# Register the URL on LazChain
 file_id = client.add_file(url)
 
 print(f"Success! Our file is registered with ID: {file_id}")
@@ -107,7 +107,7 @@ This final transaction rewards us for our work, completing the cycle and incenti
 
 ### How It Works Under the Hood
 
-The process is a coordinated effort between you (the Contributor), the LazAI Blockchain, and a Proof Node.
+The process is a coordinated effort between you (the Contributor), LazChain, and a Proof Node.
 
 1.  **You Prepare:** You get your data ready, encrypt it, and upload it to a place like IPFS.
 2.  **You Register:** You call `client.add_file(url)`, which creates a transaction on the blockchain, establishing you as the owner of the data at that URL.
@@ -122,7 +122,7 @@ Here is a diagram of the key interactions:
 sequenceDiagram
     participant C as Data Contributor
     participant IPFS as "Storage (IPFS)"
-    participant BC as "LazAI Blockchain"
+    participant BC as "LazChain"
     participant PN as Proof Node
 
     C->>IPFS: Uploads encrypted data
