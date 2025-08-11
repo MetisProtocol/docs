@@ -1,14 +1,14 @@
 {
-    "title": "Andromeda",
-    "description": "Battle-tested Legacy Chain",
-    "pages": [
-        "index",
-        "---DApp---",
-        "...dapp",
-        "---Sequencer---",
-        "...sequencer",
-        "---Network---",
-        "...network"
-    ],
-    "root": true
+  "title": "Andromeda",
+  "description": "Battle-tested Mainnet L2",
+  "pages": [
+    "index",
+    "---DApp---",
+    "...dapp",
+    "---Sequencer---",
+    "...sequencer",
+    "---Network---",
+    "...network"
+  ],
+  "root": true
 }
