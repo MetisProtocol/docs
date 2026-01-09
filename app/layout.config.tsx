@@ -62,6 +62,10 @@ export const baseOptions: BaseLayoutProps = {
           text: "Metis Sepolia Faucet",
           url: "https://faucet.metis.io/",
         },
+        {
+          text: "ethfaucet.com",
+          url: "https://ethfaucet.com?utm_source=metis_docs&utm_medium=docs",
+        },
       ],
     },
     { type: "main", text: "Status", url: "https://status.metis.io" },
